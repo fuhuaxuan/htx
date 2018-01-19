@@ -1,0 +1,139 @@
+<!--Js引入-->
+<script src="##GetWebRootPath(/Scripts/jquery/jquery-1.x.js)##"></script>
+<script language="javascript" src="##GetWebRootPath(/Scripts/JQCommon.js)##"></script>
+<script language="javascript" src="##GetWebRootPath(/Scripts/DateControl.js)##"></script>
+<form name="frmDo" method="Post" action="">
+<h3 class="TitleBar" ><HDPrint Value=#UpperName#>-><HDPrint Value=#ModuleName#></h3>
+<TABLE width="100%" class="ButtonBar" cellpadding=0 cellspacing=0>
+  <col style="width:100%">
+  <TR>
+    <TD>
+      <B>工具栏：</B>
+      <HDIF Equal(<HDPrint Value=#chkRtID2#><HDPrint Value=#UpperLen#>, 11)>
+        <A HREF="##HDNet_AppName##/__ExplainModule?Url=HTX_Category_Add&UsrGid=<HDPrint Value=#UsrGid#>&UpperCode=<HDPrint Value=#UpperCode#>"><FONT class="IconAdd">　&nbsp;</FONT> 新增下级分类</A>
+      </HDIF>
+      <HDIF Equal(<HDPrint Value=#chkRtID1#><HDPrint Value=#UpperLen#>, 13)>
+        <A HREF="##HDNet_AppName##/__ExplainModule?Url=HTX_Goods_Add&UsrGid=<HDPrint Value=#UsrGid#>&UpperCode=<HDPrint Value=#UpperCode#>"><FONT class="IconAdd">　&nbsp;</FONT> 新增商品</A>
+      </HDIF>
+      <HDIF Equal(<HDPrint Value=#chkRtID3#>, 1)>
+        <A HREF="##HDNet_AppName##/__ExplainModule?Url=HTX_Category_Mod&UsrGid=<HDPrint Value=#UsrGid#>&Code=<HDPrint Value=#UpperCode#>"><FONT class="IconMod">　&nbsp;</FONT> 修改分类</A>
+      </HDIF>
+      <HDIF Equal(<HDPrint Value=#chkRtID4#><HDPrint Value=#UpperLen#>, 13)>
+        <A HREF="##HDNet_AppName##/__ExplainModule?Url=HTX_Category_Del&UsrGid=<HDPrint Value=#UsrGid#>&Code=<HDPrint Value=#UpperCode#>" onclick="javascript:if (!(confirm('你确定要删除该信息吗？\n删除操作是不能还原的！'))) return false;"><FONT class="IconMod">　&nbsp;</FONT> 删除分类</A>
+      </HDIF>
+     |
+      <A HREF="javascript:location.reload();void(0)"><FONT class="IconRefresh">　&nbsp;</FONT> 刷新</A>
+      <A HREF="##HDNet_AppName##/MainPage?URL=&UsrGid=<HDPrint Value=#UsrGid#>"><FONT class="IconBack">　&nbsp;</FONT> 返回首页</A>
+    </TD>
+  </TR>
+</TABLE>
+<!--排序点击标题即可排序-用到的控件-->
+<INPUT TYPE="hidden" title="点击标题排序-记录上一次排序order by的值" name="selOrderBy" value="<HDPrint Value=#selOrderBy# Replace=#DBField2Input#>">
+<INPUT TYPE="hidden" title="点击标题排序-记录上一次排序是正序还是倒序" name="selOrderAsc" value="<HDPrint Value=#selOrderAsc# Replace=#DBField2Input#>">
+<INPUT TYPE="hidden" title="点击标题排序-记录上一次排序的字段" name="selOrderColumn" value="<HDPrint Value=#selOrderColumn# Replace=#DBField2Input#>">
+<INPUT TYPE="hidden" title="下载报表用到的控件" name="Rep_Download" value="">
+<INPUT TYPE="hidden"  name="UpperCode" value="<HDPrint Value=#UpperCode# Replace=#DBField2Input#>">
+<input type="hidden" name="NotFirst" value="1">
+
+<table class="SearchBar" width="100%" cellspacing="0">
+  <col style="padding-left:4px;width:10%">
+  <col style="padding-left:4px;width:15%">
+  <col style="padding-left:4px;width:10%">
+  <col style="padding-left:4px;width:15%">
+  <col style="padding-left:4px;width:10%">
+  <col style="padding-left:4px;width:15%">
+  <col style="padding-left:4px;width:10%">
+  <col style="padding-left:4px;width:15%">
+  <tr class="SearchTr" >
+    <td colspan="8"><b>搜索条件</b></td>
+  </tr>
+  <tr>
+    <td>编号,名称 ≈ </td>
+    <td><input type="Text" name="txt_Name" class="JQText" style="width:90%"></td>
+    <td>规格 ≈ </td>
+    <td><input type="Text" name="txt_Spec" class="JQText" style="width:90%"></td>
+    <td>单位 ≈ </td>
+    <td><input type="Text" name="txt_Unit" class="JQText" style="width:90%"></td>
+    <td>性质 ≈ </td>
+    <td><input type="Text" name="txt_Nature" class="JQText" style="width:90%"></td>
+  </tr>
+  <tr >
+    <td colspan="4">
+     <a href="javascript:void(0)" onclick="JQExpand('tb_Search','font_Icon');" class="IconDown">　&nbsp;显示说明信息</a>（请进行相应的查询，找到您需要的信息）
+    </td>
+    <td colspan="4" align="right">
+      <INPUT TYPE="hidden" name="NotFirst" value="1">
+      <INPUT TYPE="submit" name="btnSearch" class="NormalSbt" value=" 查询 " >
+      <INPUT TYPE="reset" name="btnReset" class="NormalSbt" value=" 默认 ">
+      <!--<INPUT TYPE="button" name="btnDownload" class="NormalSbt" value="下载Excel" onclick="return JQListDown('##HDNet_AppName##/__ExplainModule?Url=HTX_Goods_Down&UsrGid=<HDPrint Value=#UsrGid#>')">-->
+    </td>
+  </tr>
+  <tr>
+    <td colspan="8" align="left">
+      <div id="tb_Search" style="display:none">
+        <li>≈:可进行模糊查询</li>
+        <li>时间格式：YYYY.MM.DD HH24:MI/YYYY.MM.DD</li>
+      </div>
+    </td>
+  </tr>
+</table>
+<script language="javascript">
+  //数据提交后，对页面查询条件重新赋值
+  document.all.txt_Name.value = '<HDPrint value=#txt_Name# Replace=#DBField2Js#>';
+  document.all.txt_Spec.value = '<HDPrint value=#txt_Spec# Replace=#DBField2Js#>';
+  document.all.txt_Unit.value = '<HDPrint value=#txt_Unit# Replace=#DBField2Js#>';
+  document.all.txt_Nature.value = '<HDPrint value=#txt_Nature# Replace=#DBField2Js#>';
+  document.all.UpperCode.value = '<HDPrint value=#UpperCode# Replace=#DBField2Js#>';
+</script>
+<BR>
+<HDPageBar>
+<table class=ListBar width="100%" cellspacing="1">
+  <col style="padding-left:4px;width:10%">
+  <col style="padding-left:4px;width:25%">
+  <col style="padding-left:4px;width:15%">
+  <col style="padding-left:4px;width:10%">
+  <col style="padding-left:4px;width:10%">
+  <col style="padding-left:4px;width:10%">
+  <col style="padding-left:4px;width:10%">
+  <col style="padding-left:4px;width:15%">
+  <tr class="listtr" style="cursor:hand;">
+    <td JQAsc="" JQColumn="s.Code">编号</td>
+    <td JQAsc="" JQColumn="s.Name">名称</td>
+    <td JQAsc="" JQColumn="s.UpperName">分类</td>
+    <td JQAsc="" JQColumn="s.Spec">规格</td>
+    <td JQAsc="" JQColumn="s.Unit">单位</td>
+    <td JQAsc="" JQColumn="s.Nature">性质</td>
+    <td JQAsc="" JQColumn="s.Stock">库存</td>
+    <td JQAsc="" JQColumn="s.FillUsrName">库存金额</td>
+  </tr>
+  <HDLoop>
+  <tr class="listtd" onmouseover="this.className='listtdfocus';" onmouseout="this.className='listtd'">
+    <td align="center">
+      <script language="javascript">
+        var Type = '';
+        if ('<HDPrint Value=#UpperCode# Replace=#DBField2Js#>' == '6') {
+          Type = '<HDPrint Value=#UpperCode# Replace=#DBField2Js#>';
+        }
+        document.write('<a href="##HDNet_AppName##/__ExplainModule?Url=HTX_Goods'+Type+'_Dtl&UsrGid=<HDPrint Value=#UsrGid#>&Gid=<HDPrint Value=#Gid#>" target="_self"><HDPrint Value=#Code#></a>')
+      </script>
+    </td>
+    <td><HDPrint Value=#Name#></td>
+    <td align="center"><HDPrint Value=#UpperName#></td>
+    <td align="center"><HDPrint Value=#Spec#></td>
+    <td align="center"><HDPrint Value=#Unit#></td>
+    <td align="center"><HDPrint Value=#Nature#></td>
+    <td align="center"><HDPrint Value=#Stock#></td>
+    <td align="center"><HDPrint Value=#FillUsrName#></td>
+  </tr>
+  </HDLoop>
+</table>
+
+<SCRIPT LANGUAGE="JavaScript">
+  //函数：ready
+  //功能：document 加载完成后调用
+  $(function(){
+    //列表初始化
+    JQListInit('<HDPrint Value=#selOrderColumn# Replace=#DBField2Js#>','<HDPrint Value=#selOrderAsc# Replace=#DBField2Js#>');
+  });
+  </script>
+</form>

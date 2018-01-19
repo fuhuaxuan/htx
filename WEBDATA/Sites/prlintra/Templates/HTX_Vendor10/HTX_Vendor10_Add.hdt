@@ -1,0 +1,69 @@
+<!--Js引入-->
+<script src="##GetWebRootPath(/Scripts/jquery/jquery-1.x.js)##"></script>
+<script language="javascript" src="##GetWebRootPath(/Scripts/JQCommon.js)##"></script>
+<script language="javascript" src="##GetWebRootPath(/Scripts/JSCalendar.js)##"></script>
+<form name="frmDo" method="post" action="">
+<!--模块使用到一些隐藏的控件-->
+<input type="text" style="display:none" name="Gid" value="<HDPrint Value=#NewGid# Replace=#DBField2Input#>">
+<INPUT TYPE="hidden"  name="Type" value="<HDPrint Value=#Type# Replace=#DBField2Input#>">
+<h3 class="TitleBar"><HDPrint Value=#ModuleAtype#>-><HDPrint Value=#ModuleName#></h3>
+<div id="JQ_ToolBar">
+<TABLE width="100%" class="ButtonBar" cellpadding="0" cellspacing="0">
+  <col style="width:100%">
+  <TR>
+    <TD>
+      <B>工具栏：</B>
+      <A Href="javascript:CheckSubmit('保存');void(0);" name="btn_1"><FONT class="IconSave">　&nbsp;</FONT> 保存 </A>
+     |
+      <A HREF="javascript:location.reload();void(0)"><FONT class="IconRefresh">　&nbsp;</FONT> 刷新</A>
+      <a HREF="##HDNet_AppName##/__ExplainModule?URL=HTX_Vendor10_List&UsrGid=<HDPrint Value=#UsrGid#>"><FONT class="IconBack">　&nbsp;</FONT> 返回列表</A>
+    </TD>
+  </TR>
+</TABLE>
+</div>
+
+<table width="100%" class="ListBar" cellpadding="0"  cellspacing="1">
+  <colgroup>
+    <col style="padding-left:4px;width:10%">
+    <col style="padding-left:4px;width:23%">
+    <col style="padding-left:4px;width:10%">
+    <col style="padding-left:4px;width:23%">
+    <col style="padding-left:4px;width:10%">
+    <col style="padding-left:4px;width:23%">
+  </colgroup>
+  <tr>
+    <td class="DtlBarTitle">编号:</td>
+    <td class="listtd">自动生成</td>
+    <td class="DtlBarTitle">名称:<font color ="red">*</font></td>
+    <td class="listtd"><input type="text" NAME="Name" maxlength="32" class="JQText JQMust" value="<HDPrint Value=#Name# Replace=#DBField2Input#>"></td>
+    <td class="DtlBarTitle">地址:<font color ="red">*</font></td>
+    <td class="listtd"><input type="text" NAME="Address" maxlength="64" class="JQText JQMust" value="<HDPrint Value=#Address# Replace=#DBField2Input#>"></td>
+  </tr>
+  <tr>
+    <td class="DtlBarTitle">联系人:<font color ="red">*</font></td>
+    <td class="listtd"><input type="text" NAME="Contactor" maxlength="16" class="JQText JQMust" value="<HDPrint Value=#Contactor# Replace=#DBField2Input#>"></td>
+    <td class="DtlBarTitle">联系方式:<font color ="red">*</font></td>
+    <td class="listtd"><input type="text" NAME="ContactWay" maxlength="16" class="JQText JQMust" value="<HDPrint Value=#ContactWay# Replace=#DBField2Input#>"></td>
+    <td class="DtlBarTitle">区域:<font color ="red">*</font></td>
+    <td class="listtd"><input type="text" NAME="Area" maxlength="16" class="JQText JQMust" value="<HDPrint Value=#Area# Replace=#DBField2Input#>"></td>
+  </tr>
+  <tr valign="top">
+    <td class="DtlBarTitle">所属业务员:<font color ="red">*</font><br><a href="javascript:DataInterface(frmDataInterface_App)">[选择]</a></td>
+    <td class="listtd">
+      <input type="text" NAME="FillUsrName" maxlength="32" class="JQText JQMust" value="<HDPrint Value=#FillUsrName# Replace=#DBField2Input#>" readonly>
+      <input type="hidden" NAME="FillUsrCode" maxlength="32" class="JQDate JQMust" value="<HDPrint Value=#FillUsrCode# Replace=#DBField2Input#>">
+      <input type="hidden" NAME="FillUsrGid" maxlength="32" class="JQDate JQMust" value="<HDPrint Value=#FillUsrGid# Replace=#DBField2Input#>">
+    </td>
+    <td class="DtlBarTitle">备注:<br><font color="gray">(500字内)</font></td>
+    <td class="listtd" colspan="3"><textarea rows="5" id="Memo" name="Memo" class="JQText" maxlength="500" JQdefs="请输入备注,500字内"><HDPrint Value=#Memo# Replace=#DBField2InputField#></textarea></td>
+  </tr>
+</table>
+</form>
+
+<FieldSet style="Font-Family:Tahoma;Font-Size:9pt;">
+<Legend><font color="red">特别提醒</font></Legend>
+<li>相关说明文字；</li>
+</FieldSet>
+
+<!--本流程公用的Js函数等-->
+<HDPrint Value=#CommonList# Replace=#None#>

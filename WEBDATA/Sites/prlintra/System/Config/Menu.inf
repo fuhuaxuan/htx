@@ -2,48 +2,59 @@
 ^1^个人信息^^^_Self^SysUsrSelf
 ^2^个人信息^sysusrselfinfmod^##HDNet_AppName##/__ExplainModule?Url=SysUsrSelfInfMod&usrgid={##usrgid##}^MainPage^
 ^2^登录密码修改^sysusrselfpswmod^##HDNet_AppName##/__ExplainModule?Url=SysUsrSelfPswMod&usrgid={##usrgid##}&UrlFrom=Other^MainPage^
-^2^配置个人首页提醒^mainpageconfig^##HDNet_AppName##/MainPageConfig?usrgid={##usrgid##}^MainPage^
 
 ^1^资料库管理^^^_Self^Base
-^2^供应商^HTX_Vendor_List^##HDNet_AppName##/__ExplainModule?Url=HTX_Vendor_List&usrgid={##usrgid##}^_blank^
-^2^加工地点^HTX_JiaGong_List^##HDNet_AppName##/__ExplainModule?Url=HTX_JiaGong_List&usrgid={##usrgid##}^_blank^
-^2^委托工厂^HTX_GongChang_List^##HDNet_AppName##/__ExplainModule?Url=HTX_GongChang_List&usrgid={##usrgid##}^MainPage^
+^2^供应商^HTX_Vendor10_List^##HDNet_AppName##/__ExplainModule?Url=HTX_Vendor10_List&usrgid={##usrgid##}&Type=10^MainPage^
+^2^客户^HTX_Vendor20_List^##HDNet_AppName##/__ExplainModule?Url=HTX_Vendor20_List&usrgid={##usrgid##}&Type=20^MainPage^
+^2^晒场^HTX_Factory10_List^##HDNet_AppName##/__ExplainModule?Url=HTX_Factory10_List&usrgid={##usrgid##}&type=10^MainPage^
+^2^委托工厂^HTX_Factory20_List^##HDNet_AppName##/__ExplainModule?Url=HTX_Factory20_List&usrgid={##usrgid##}&type=20^MainPage^
+^2^商品资料^HTX_Goods^##HDNet_AppName##/__ExplainModule?Url=HTX_Goods&usrgid={##usrgid##}^MainPage^
 
-^1^包材管理^^^_Self^BaoCai
-^2^资料库^HTX_BaoCai_List^##HDNet_AppName##/__ExplainModule?Url=HTX_BaoCai_List&usrgid={##usrgid##}^_blank^
-^2^成本调整^HTX_BaoCai_Stock^##HDNet_AppName##/__ExplainModule?Url=HTX_BaoCai_Stock&usrgid={##usrgid##}^_blank^
+^1^辅助材料管理^^^MainPage^HTX_Order3
+^2^入库单^HTX_Order3_RKList^##HDNet_AppName##/__ExplainModule?Url=HTX_Order3_RKList&usrgid={##usrgid##}^MainPage^
+^2^入库单新增^HTX_Order3_RKAdd^##HDNet_AppName##/WFFlowPage?Url=HTX_Order3RK_T1&usrgid={##usrgid##}&ModelCode=HTX_Order3RK^_blank^
+^2^出库单^HTX_Order3_CKList^##HDNet_AppName##/__ExplainModule?Url=HTX_Order3_CKList&usrgid={##usrgid##}^MainPage^
+^2^出库单新增^HTX_Order3_CKAdd^##HDNet_AppName##/WFFlowPage?Url=HTX_Order3CK_T1&usrgid={##usrgid##}&ModelCode=HTX_Order3CK^_blank^
 
-^1^原料管理^^^_Self^YuanLiao
-^2^资料库^HTX_YuanLiao_List^##HDNet_AppName##/__ExplainModule?Url=HTX_YuanLiao_List&usrgid={##usrgid##}^_blank^
-^2^采购入库单^HTX_YuanLiao_InList^##HDNet_AppName##/__ExplainModule?Url=HTX_YuanLiao_InList&usrgid={##usrgid##}^_blank^
-^2^出库单^HTX_YuanLiao_OutList^##HDNet_AppName##/__ExplainModule?Url=HTX_YuanLiao_OutList&usrgid={##usrgid##}^_blank^
-^2^移库^HTX_YuanLiao_MoveList^##HDNet_AppName##/__ExplainModule?Url=HTX_YuanLiao_MoveList&usrgid={##usrgid##}^_blank^
-^2^退货^HTX_YuanLiao_Back^##HDNet_AppName##/__ExplainModule?Url=HTX_YuanLiao_Back&usrgid={##usrgid##}^_blank^
-^2^调拨^HTX_YuanLiao_Allot^##HDNet_AppName##/__ExplainModule?Url=HTX_YuanLiao_Allot&usrgid={##usrgid##}^_blank^
-^2^成本调整^HTX_YuanLiao_Stock^##HDNet_AppName##/__ExplainModule?Url=HTX_YuanLiao_Stock&usrgid={##usrgid##}^_blank^
+^1^原料管理^^^MainPage^HTX_Order1
+^2^入库单^HTX_Order1_RKList^##HDNet_AppName##/__ExplainModule?Url=HTX_Order1_RKList&usrgid={##usrgid##}^MainPage^
+^2^入库单新增^HTX_Order1_RKAdd^##HDNet_AppName##/WFFlowPage?Url=HTX_Order1RK_T1&usrgid={##usrgid##}&ModelCode=HTX_Order1RK^_blank^
+^2^出库单^HTX_Order1_CKList^##HDNet_AppName##/__ExplainModule?Url=HTX_Order1_CKList&usrgid={##usrgid##}^MainPage^
+^2^出库单新增^HTX_Order1_CKAdd^##HDNet_AppName##/WFFlowPage?Url=HTX_Order1CK_T1&usrgid={##usrgid##}&ModelCode=HTX_Order1CK^_blank^
+^2^退货单^HTX_Order1_THList^##HDNet_AppName##/__ExplainModule?Url=HTX_Order1_THList&usrgid={##usrgid##}^MainPage^
+^2^退货单新增^HTX_Order1_THAdd^##HDNet_AppName##/WFFlowPage?Url=HTX_Order1TH_T1&usrgid={##usrgid##}&ModelCode=HTX_Order1TH^_blank^
+^2^调拨单^HTX_Order1_DBList^##HDNet_AppName##/__ExplainModule?Url=HTX_Order1_DBList&usrgid={##usrgid##}^MainPage^
+^2^调拨单新增^HTX_Order1_DBAdd^##HDNet_AppName##/WFFlowPage?Url=HTX_Order1DB_T1&usrgid={##usrgid##}&ModelCode=HTX_Order1DB^_blank^
 
-^1^半成品管理^^^_Self^BanCP
-^2^资料库^HTX_BanCP_List^##HDNet_AppName##/__ExplainModule?Url=HTX_BanCP_List&usrgid={##usrgid##}^_blank^
-^2^入库单^HTX_BanCP_InList^##HDNet_AppName##/__ExplainModule?Url=HTX_BanCP_InList&usrgid={##usrgid##}^_blank^
-^2^成本调整^HTX_BanCP_Stock^##HDNet_AppName##/__ExplainModule?Url=HTX_BanCP_Stock&usrgid={##usrgid##}^_blank^
+^1^半成品管理^^^MainPage^HTX_Order2
+^2^入库单^HTX_Order2_RKList^##HDNet_AppName##/__ExplainModule?Url=HTX_Order2_RKList&usrgid={##usrgid##}^MainPage^
+^2^入库单新增^HTX_Order2_RKAdd^##HDNet_AppName##/WFFlowPage?Url=HTX_Order2RK_T1&usrgid={##usrgid##}&ModelCode=HTX_Order2RK^_blank^
+^2^出库单^HTX_Order2_CKList^##HDNet_AppName##/__ExplainModule?Url=HTX_Order2_CKList&usrgid={##usrgid##}^MainPage^
+^2^出库单新增^HTX_Order2_CKAdd^##HDNet_AppName##/WFFlowPage?Url=HTX_Order2CK_T1&usrgid={##usrgid##}&ModelCode=HTX_Order2CK^_blank^
 
-^1^委托管理^^^_Self^WeiTuo
-^2^资料库^HTX_WeiTuo_List^##HDNet_AppName##/__ExplainModule?Url=HTX_WeiTuo_List&usrgid={##usrgid##}^_blank^
-^2^发料单^HTX_WeiTuo_OutList^##HDNet_AppName##/__ExplainModule?Url=HTX_WeiTuo_OutList&usrgid={##usrgid##}^_blank^
-^2^收料单^HTX_WeiTuo_InList^##HDNet_AppName##/__ExplainModule?Url=HTX_WeiTuo_InList&usrgid={##usrgid##}^_blank^
-^2^成本调整^HTX_WeiTuo_Stock^##HDNet_AppName##/__ExplainModule?Url=HTX_WeiTuo_Stock&usrgid={##usrgid##}^_blank^
+^1^委托管理^^^MainPage^HTX_Order4
+^2^委托单^HTX_Order4_WTList^##HDNet_AppName##/__ExplainModule?Url=HTX_Order4_WTList&usrgid={##usrgid##}^MainPage^
 
-^1^成品管理^^^_Self^ChengPing
-^2^资料库^HTX_ChengPing_List^##HDNet_AppName##/__ExplainModule?Url=HTX_ChengPing_List&usrgid={##usrgid##}^_blank^
-^2^销售单^HTX_ChengPing_OutList^##HDNet_AppName##/__ExplainModule?Url=HTX_ChengPing_OutList&usrgid={##usrgid##}^_blank^
-^2^成本调整^HTX_ChengPing_Stock^##HDNet_AppName##/__ExplainModule?Url=HTX_ChengPing_Stock&usrgid={##usrgid##}^_blank^
-^2^成本查询^HTX_ChengPing_CostList^##HDNet_AppName##/__ExplainModule?Url=HTX_ChengPing_CostList&usrgid={##usrgid##}^_blank^
+^1^成品管理^^^MainPage^HTX_Order6
+^2^入库单^HTX_Order6_RKList^##HDNet_AppName##/__ExplainModule?Url=HTX_Order6_RKList&usrgid={##usrgid##}^MainPage^
+^2^入库单新增^HTX_Order6_RKAdd^##HDNet_AppName##/WFFlowPage?Url=HTX_Order6RK_T1&usrgid={##usrgid##}&ModelCode=HTX_Order6RK^_blank^
+^2^出库单^HTX_Order6_CKList^##HDNet_AppName##/__ExplainModule?Url=HTX_Order6_CKList&usrgid={##usrgid##}^MainPage^
+^2^出库单新增^HTX_Order6_CKAdd^##HDNet_AppName##/WFFlowPage?Url=HTX_Order6CK_T1&usrgid={##usrgid##}&ModelCode=HTX_Order6CK^_blank^
 
-^1^报表管理^^^_Self^repApply
-^2^报表应用^repapplist^##HDNet_AppName##/__ExplainModule?Url=RepAppList&usrgid={##usrgid##}^MainPage^
-^2^报表个人管理^replistadmin^##HDNet_AppName##/__ExplainModule?Url=RepListadmin&usrgid={##usrgid##}^MainPage^^select 1 from Rep_List a, REP_RT_admin b, v_Org_Usr c where a.EntGid = '{##entgid##}' and b.EntGid = '{##entgid##}' and c.EntGid = '{##entgid##}' and a.Gid = b.RepGid and b.UsrGidEx = c.OrgGid and c.UsrGid = '{##usrgid##}' ^
+^1^审批管理^^^_Self^wf1
+^2^待完成任务^wftodotasklist^##HDNet_AppName##/__ExplainModule?Url=wftodotasklist&usrgid={##usrgid##}^MainPage^
 ^2^------------------^wfflowlist^#^_self^
-^2^报表管理^replist^##HDNet_AppName##/__ExplainModule?Url=RepList&usrgid={##usrgid##}^MainPage^
+^2^流程列表^wfflowlist^##HDNet_AppName##/__ExplainModule?Url=wfflowlist&usrgid={##usrgid##}^MainPage^
+^2^审批设置^wfmodellist^##HDNet_AppName##/__ExplainModule?Url=wfmodellist&usrgid={##usrgid##}^MainPage^
+
+^1^库存管理^^^MainPage^HTX_Order6
+^2^库存查询^HTX_Order7_StockList^##HDNet_AppName##/__ExplainModule?Url=HTX_Order7_StockList&usrgid={##usrgid##}^MainPage^
+^2^库存调整单^HTX_Order7_KCList^##HDNet_AppName##/__ExplainModule?Url=HTX_Order7_KCList&usrgid={##usrgid##}^MainPage^
+^2^库存调整单新增^HTX_Order7_KCAdd^##HDNet_AppName##/WFFlowPage?Url=HTX_Order7KC_T1&usrgid={##usrgid##}&ModelCode=HTX_Order7KC^_blank^
+
+^1^成本管理^^^MainPage^HTX_Order6
+^2^成本调整单^HTX_Order8_CBList^##HDNet_AppName##/__ExplainModule?Url=HTX_Order8_CBList&usrgid={##usrgid##}^MainPage^
+^2^成本调整单新增^HTX_Order8_CBAdd^##HDNet_AppName##/WFFlowPage?Url=HTX_Order8CB_T1&usrgid={##usrgid##}&ModelCode=HTX_Order8CB^_blank^
 
 ^1^用户管理^^^_Self^Usr
 ^2^用户查询^SysUsrList^##HDNet_AppName##/__ExplainModule?Url=SysUsrList&usrgid={##usrgid##}^MainPage^
@@ -51,10 +62,8 @@
 ^2^权限用户查询^sysusrrtrtusrlist^##HDNet_AppName##/__ExplainModule?Url=sysusrrtrtusrlist&usrgid={##usrgid##}^MainPage^
 
 ^1^组织管理^^^_Self^org
-^2^企业部门组^SysOrgTree^##HDNet_AppName##/__ExplainModule?Url=SysOrgTree&usrgid={##usrgid##}&OrgGid=DEPT^MainPage^
 ^2^全体用户组^SysOrgTree^##HDNet_AppName##/__ExplainModule?Url=SysOrgTree&usrgid={##usrgid##}&OrgGid=ALL_USR_GRP^MainPage^
 ^2^所有组织设置^sysorglist^##HDNet_AppName##/__ExplainModule?Url=sysorglist&usrgid={##usrgid##}^MainPage^^select 1 from USR WHERE ENTGID='{##entgid##}' and code='heading' and Gid = '{##usrgid##}' ^
 
 ^1^日志管理^^^_Self^log
 ^2^日志查询^sysloglist^##HDNet_AppName##/__ExplainModule?Url=sysloglist&usrgid={##usrgid##}^MainPage^
-^2^日志备份^syslogdel^##HDNet_AppName##/syslogdel?usrgid={##usrgid##}^MainPage^

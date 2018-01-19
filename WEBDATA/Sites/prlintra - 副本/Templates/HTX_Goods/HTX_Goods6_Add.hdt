@@ -1,0 +1,129 @@
+<!--Js引入-->
+<script src="##GetWebRootPath(/Scripts/jquery/jquery-1.x.js)##"></script>
+<script language="javascript" src="##GetWebRootPath(/Scripts/JQCommon.js)##"></script>
+<script language="javascript" src="##GetWebRootPath(/Scripts/JSCalendar.js)##"></script>
+<form name="frmDo" method="post" action="">
+<!--模块使用到一些隐藏的控件-->
+<input type="text" style="display:none" name="Gid" value="<HDPrint Value=#NewGid# Replace=#DBField2Input#>">
+<h3 class="TitleBar"><HDPrint Value=#UpperName#>-><HDPrint Value=#ModuleName#></h3>
+<div id="JQ_ToolBar">
+<TABLE width="100%" class="ButtonBar" cellpadding="0" cellspacing="0">
+  <col style="width:100%">
+  <TR>
+    <TD>
+      <B>工具栏：</B>
+      <A Href="javascript:CheckSubmit('保存');void(0);" name="btn_1"><FONT class="IconSave">　&nbsp;</FONT> 保存 </A>
+     |
+      <A HREF="javascript:location.reload();void(0)"><FONT class="IconRefresh">　&nbsp;</FONT> 刷新</A>
+    </TD>
+  </TR>
+</TABLE>
+</div>
+
+<table width="100%" class="ListBar" cellpadding="0"  cellspacing="1">
+  <colgroup>
+    <col style="padding-left:4px;width:10%">
+    <col style="padding-left:4px;width:23%">
+    <col style="padding-left:4px;width:10%">
+    <col style="padding-left:4px;width:23%">
+    <col style="padding-left:4px;width:10%">
+    <col style="padding-left:4px;width:23%">
+  </colgroup>
+  <tr>
+    <td class="DtlBarTitle">产品:<font color ="red">*</font></td>
+    <td class="listtd">
+      <select name="Code1" class="JQSelect JQMust">
+        <option value="">--请选择--</option>
+        <option value="DX">大象明心</option>
+        <option value="WX">无瑕天食</option>
+        <option value="JH">黄精精华</option>
+        <option value="SP">黄精食品</option>
+      </select>
+    </td>
+    <td class="DtlBarTitle">形状:<font color ="red">*</font></td>
+    <td class="listtd">
+      <select name="Code2" class="JQSelect JQMust">
+        <option value="">--请选择--</option>
+        <option value="01">蜜丸类</option>
+        <option value="02">膏类</option>
+      </select>
+      <script language="javascript">
+      </script>
+    </td>
+    <td class="DtlBarTitle">包装:<font color ="red">*</font></td>
+    <td class="listtd">
+      <select name="Code3" class="JQSelect JQMust">
+        <option value="">--请选择--</option>
+        <option value="01">旅行装</option>
+        <option value="02">礼盒装</option>
+        <option value="03">体验装</option>
+        <option value="04">罐装</option>
+        <option value="05">袋装</option>
+      </select>
+      <script language="javascript">
+      var Code = '<HDPrint Value=#Code1# Replace=#DBField2Js#>';
+      if (Code != '') {
+        $("select[name=Code1] option[value="+substr(Code,0,1)+"]").prop("selected",true);
+        $("select[name=Code2] option[value="+substr(Code,2,3)+"]").prop("selected",true);
+        $("select[name=Code3] option[value="+substr(Code,4,5)+"]").prop("selected",true);
+      }
+
+      $("select[name^=Code]").change(function(){
+        var Code1 = $("select[name=Code1]").val();
+        var Code2 = $("select[name=Code2]").val();
+        var Code3 = $("select[name=Code3]").val();
+        var Name1 = $("select[name=Code1]").find("option:selected").text();
+        var Name3 = $("select[name=Code3]").find("option:selected").text();
+        if (Code1 == null) {
+          Code1 = '';
+        }
+        if (Code2 == null) {
+          Code2 = '';
+        }
+        if (Code3 == null) {
+          Code3 = '';
+        }
+        if (Name1 == null) {
+          Name1 = '';
+        }
+        if (Name3 == null) {
+          Name3 = '';
+        }
+        $("input[name=Code]").val(Code1+Code2+Code3);
+        $("input[name=Name]").val(Name1+'-'+Name3);
+      });
+      </script>
+    </td>
+  </tr>
+  <tr>
+    <td class="DtlBarTitle">编号:</td>
+    <td class="listtd"><input type="text" NAME="Code" maxlength="32" class="JQText" value="<HDPrint Value=#Code# Replace=#DBField2Input#>" readonly style="border:0px"><input type="hidden" NAME="UpperCode" maxlength="32" class="JQText JQMust" value="<HDPrint Value=#UpperCode# Replace=#DBField2Input#>"></td>
+    <td class="DtlBarTitle">名称:</td>
+    <td class="listtd" colspan="3"><input type="text" NAME="Name" maxlength="32" class="JQText" value="<HDPrint Value=#Name# Replace=#DBField2Input#>" readonly style="border:0px"></td>
+  </tr>
+  <tr>
+    <td class="DtlBarTitle">规格:<font color ="red">*</font></td>
+    <td class="listtd" colspan="5"><input type="text" NAME="Spec" maxlength="16" class="JQText JQMust" value="<HDPrint Value=#Spec# Replace=#DBField2Input#>"></td>
+  </tr>
+  <tr>
+    <td class="DtlBarTitle">单位:<font color ="red">*</font></td>
+    <td class="listtd" colspan="5"><input type="text" NAME="Unit" maxlength="16" class="JQText JQMust" value="<HDPrint Value=#Unit# Replace=#DBField2Input#>"></td>
+  </tr>
+  <tr>
+    <td class="DtlBarTitle">性质:</td>
+    <td class="listtd" colspan="5"><input type="text" NAME="Nature" maxlength="16" class="JQText" value="<HDPrint Value=#Nature# Replace=#DBField2Input#>"></td>
+  </tr>
+  <tr valign="top">
+    <td class="DtlBarTitle">备注:<br><font color="gray">(500字内)</font></td>
+    <td class="listtd" colspan="5"><textarea rows="5" id="Memo" name="Memo" class="JQText" maxlength="500" JQdefs="请输入备注,500字内"><HDPrint Value=#Memo# Replace=#DBField2InputField#></textarea></td>
+  </tr>
+</table>
+</form>
+
+<FieldSet style="Font-Family:Tahoma;Font-Size:9pt;">
+<Legend><font color="red">特别提醒</font></Legend>
+<li>相关说明文字；</li>
+</FieldSet>
+
+<!--本流程公用的Js函数等-->
+<HDPrint Value=#CommonList# Replace=#None#>

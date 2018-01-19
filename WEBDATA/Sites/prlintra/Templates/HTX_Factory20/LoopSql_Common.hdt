@@ -1,0 +1,67 @@
+<script>
+
+  //提交函数
+  function CheckSubmit(){
+    //定义 提交提示文字
+    var sConfirm = '您确定已经填写完成，并保存吗？';
+    //提交时，验证必填项
+    if (!JQcheck("JQMust")){
+      return false;
+    }
+    //提交时，提示
+    if (!(confirm(sConfirm)))
+      return false;
+
+    //获取当前表单对象
+    var JqObj = $("form[name=frmDo]");
+    //表单参数设定
+    JqObj.attr({
+      "action":'##HDNet_AppName##/__ExplainModule?Url=<HDPrint Value=#Url#>Save&UsrGid=<HDPrint Value=#UsrGid#>',
+      "target":'_self'
+    });
+    //表单提交
+    JqObj.submit();
+
+    //操作按钮变为不可用
+    $("a[name=btn_1]").prop("disabled",true);
+
+    //本函数失效
+    CheckSubmit = function() {return false;}
+  }
+  //函数：ready
+  //功能：document 加载完成后调用
+  $(document).ready(function(){
+    //复制一个工具栏
+    var $ToolBar = $("div#JQ_ToolBar");
+    //$("form[name=frmDo]").append($ToolBar.html());
+  });
+</script>
+
+<script language="javascript" src="##GetWebRootPath(/Scripts/DataInterface.js)##"></script>
+<!--选择审批人调用-->
+<FORM NAME="frmDataInterface_App" ACTION="">
+  <INPUT TYPE="hidden" name="DataInterface_Title" ID="t_App" value="用户列表">
+
+  <INPUT TYPE="hidden" name="DataInterface_Sql" ID="s_App" value="select u.gid, u.code, u.name, u.atype from v_usr u, v_org_usr v, org o where u.EntGid = '<HDPrint Value=#EntGid#>' and u.EntGid = v.EntGid and u.EntGid = o.EntGid and u.Gid = v.Usrgid and v.OrgGid = o.Gid and lower(o.Code) = lower('all_usr_grp')">
+  <INPUT TYPE="hidden" name="DataInterface_CountSql" ID="c_App" value="select count(*) from v_usr u, v_org_usr v, org o where u.EntGid = '<HDPrint Value=#EntGid#>' and u.EntGid = v.EntGid and u.EntGid = o.EntGid and u.Gid = v.Usrgid and v.OrgGid = o.Gid and lower(o.Code) = lower('all_usr_grp')">
+  <INPUT TYPE="hidden" name="DataInterface_OrderSql" value="order by u.code">
+  <INPUT TYPE="hidden" name="DataInterface_UsrGid" value="<HDPrint Value=#UsrGid#>">
+  <INPUT TYPE="hidden" name="DataInterface_AppName" value="##HDNet_AppName##">
+
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="2^代码^left^100">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="3^姓名^left^100">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="4^类别^left^100">
+
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="u.code^用户代码^1">
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="u.name^用户姓名^1">
+  <input TYPE="hidden" name="DataInterface_Search_Sql" value="">
+  <input TYPE="hidden" name="DataInterface_Search_Cols" value="">
+
+  <INPUT TYPE="hidden" name="DataInterface_FieldTo" value="FillUsrGid^FillUsrCode^FillUsrName">
+  <INPUT TYPE="hidden" name="DataInterface_FieldBy" value="1^2^3">
+  <INPUT TYPE="hidden" name="DataInterface_CallBckFunc" value="">
+  <INPUT TYPE="hidden" name="DataInterface_Close" value="true">
+</FORM>
+
+
+<HDLoop></HDLoop>

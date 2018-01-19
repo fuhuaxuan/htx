@@ -1,0 +1,91 @@
+<!--Js引入-->
+<script src="##GetWebRootPath(/Scripts/jquery/jquery-1.x.js)##"></script>
+<script language="javascript" src="##GetWebRootPath(/Scripts/JQCommon.js)##"></script>
+
+<form name="frmDo" method="post" action="">
+<h3 class="TitleBar"><HDPrint Value=#ModuleAtype#>-><HDPrint Value=#ModuleName#></h3>
+<div id="JQ_ToolBar">
+<TABLE width="100%" class="ButtonBar" cellpadding=0 cellspacing=0>
+  <col style="width:100%">
+  <TR>
+    <TD>
+      <B>工具栏：</B>
+      <HDIF Equal(<HDPrint Value=#chkRtID1#>, 1)>
+        <A HREF="##HDNet_AppName##/__ExplainModule?Url=HTX_Order10_Mod&UsrGid=<HDPrint Value=#UsrGid#>&Gid=<HDPrint Value=#Gid#>"><FONT class="IconMod">　&nbsp;</FONT> 修改</A>
+      </HDIF>
+      <HDIF Equal(<HDPrint Value=#chkRtID2#>, 1)>
+      <a href="##HDNet_AppName##/__ExplainModule?Url=HTX_Order10_Del&UsrGid=<HDPrint Value=#UsrGid#>&Gid=<HDPrint Value=#Gid#>" onclick="javascript:if (!(confirm('你确定要删除该信息吗？\n删除操作是不能还原的！'))) return false;"><FONT class="IconDel">　&nbsp;</FONT> 删除</A>
+      </HDIF>
+     |
+      <A HREF="javascript:location.reload();void(0)"><FONT class="IconRefresh">　&nbsp;</FONT> 刷新</A>
+    </TD>
+  </TR>
+</TABLE>
+</div>
+<table  width="100%" class="ListBar" cellspacing="1">
+  <colgroup>
+    <col style="padding-left:4px;width:10%">
+    <col style="padding-left:4px;width:23%">
+    <col style="padding-left:4px;width:10%">
+    <col style="padding-left:4px;width:23%">
+    <col style="padding-left:4px;width:10%">
+    <col style="padding-left:4px;width:23%">
+  </colgroup>
+  <tr>
+    <td class="DtlBarTitle">单号:</td>
+    <td class="listtd"><HDPrint Value=#Gid#></td>
+    <td class="DtlBarTitle">批次:</td>
+    <td class="listtd"><HDPrint Value=#Num#></td>
+    <td class="DtlBarTitle">调整日期:</td>
+    <td class="listtd"><HDPrint Value=#OpDate#></td>
+  </tr>
+  <tr valign="top">
+    <td class="DtlBarTitle">备注:</td>
+    <td class="listtd" colspan="5"><HDPrint Value=#Memo#></td>
+  </tr>
+</table><h3 class="SubTitleBar" >
+<TABLE cellspacing="1" cellpadding="0" width="100%">
+  <col style="padding-left:4px;">
+  <col style="width:20px;" align="center">
+  <TR>
+    <TD align="left" style="padding-left:10px;"><b>辅料信息</b></TD>
+    <TD onclick="JQExpand('tb_Dtl')"  style="cursor:hand" class="IconUp">　&nbsp;</TD>
+  </TR>
+</TABLE>
+</h3>
+<table width="100%" class="ListBar JQMust" cellpadding="0"  cellspacing="1" id="tb_Dtl">
+  <colgroup>
+     <col style="width:20%">
+     <col style="width:15%">
+     <col style="width:10%">
+     <col style="width:10%">
+     <col style="width:10%">
+     <col style="width:10%">
+     <col style="width:10%">
+     <col style="width:5%" align="center">
+  </colgroup>
+  <!--使用新增行 JQTr_Add 时，需在表格中加上 thead,tbody-->
+  <thead>
+  <tr class="DtlBarTitle" align="center">
+    <td>辅料入库单号</td>
+    <td>入库批号</td>
+    <td>入库商品编号</td>
+    <td>入库商品名称</td>
+    <td>调整库存</td>
+    <td>调整金额</td>
+  </tr>
+  </thead>
+  <tbody>
+<HDPrint Value=#DtlList# Replace=#None#>
+  </tbody>
+</table>
+</form>
+<script language="javascript">
+  //函数：ready
+  //功能：document 加载完成后调用
+  $(function(){
+    //复制一个工具栏
+    var $ToolBar = $("div#JQ_ToolBar");
+    //$("form[name=frmDo]").append($ToolBar.html());
+  });
+</script>

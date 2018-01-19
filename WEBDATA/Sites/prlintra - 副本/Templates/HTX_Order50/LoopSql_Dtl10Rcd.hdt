@@ -1,0 +1,15 @@
+<script>
+  <hdloop>
+    Add_OrderInRcd('<HDPrint Value=#OpGid# Replace=#DBField2Js#>',
+'<HDPrint Value=#OpNum# Replace=#DBField2Js#>',
+'<HDPrint Value=#OpStat# Replace=#DBField2Js#>',
+'<HDPrint Value=#OpTypeUrl# Replace=#DBField2Js#>',
+'<HDPrint Value=#GdGid# Replace=#DBField2Js#>',
+'<HDPrint Value=#OpGdGid# Replace=#DBField2Js#>',
+'<HDPrint Value=#OpGdCode# Replace=#DBField2Js#>',
+'<HDPrint Value=#OpGdName# Replace=#DBField2Js#>',
+'<HDPrint Value=#GdStock# Replace=#DBField2Js#>',
+'<HDPrint Value=#OpQty# Replace=#DBField2Js#>',
+'<HDPrint Value=#OpLoss# Replace=#DBField2Js#>');
+  </hdloop>
+</script>

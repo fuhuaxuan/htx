@@ -1,0 +1,14 @@
+<script>
+  <hdloop>
+    Add_Goods('<HDPrint Value=#GdGid# Replace=#DBField2Js#>',
+      '<HDPrint Value=#GdCode# Replace=#DBField2Js#>',
+      '<HDPrint Value=#GdName# Replace=#DBField2Js#>',
+      '<HDPrint Value=#GdSpec# Replace=#DBField2Js#>',
+      '<HDPrint Value=#GdUnit# Replace=#DBField2Js#>',
+      '<HDPrint Value=#UpperCode# Replace=#DBField2Js#>',
+      '<HDPrint Value=#UpperName# Replace=#DBField2Js#>',
+      '<HDPrint Value=#OpQty# Replace=#DBField2Js#>',
+      '<HDPrint Value=#ProDate# Replace=#DBField2Js#>',
+      '<HDPrint Value=#ValidDay# Replace=#DBField2Js#>');
+  </hdloop>
+</script>

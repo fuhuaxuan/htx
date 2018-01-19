@@ -1,0 +1,20 @@
+<SCRIPT LANGUAGE="JavaScript">
+  alert('<HDPrint Value=#ModuleName# Replace=#DBField2Js#>成功，【<HDPrint value=#Code# Replace=#DBField2Js#>】<HDPrint Value=#Name# Replace=#DBField2Js#>');
+  //如有打开页面，刷新打开页面
+  if (self.opener != null)
+  {
+    try{
+      self.opener.location.reload();
+    }
+    catch(e){
+    }
+    window.opener = null;
+    window.open(' ', '_self', ' ');
+  }
+  var sParent = window.parent;
+  sParent.FrameTree.location.reload();
+
+  setTimeout(function () {
+    sParent.FrameTree.JQTreeSearch('<HDPrint Value=#Code#>');
+  }, 1000);
+</SCRIPT>

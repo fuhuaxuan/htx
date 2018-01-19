@@ -1,0 +1,204 @@
+<!--Js引入-->
+<script src="##GetWebRootPath(/Scripts/jquery/jquery-1.x.js)##"></script>
+<script language="javascript" src="##GetWebRootPath(/Scripts/JQCommon.js)##"></script>
+<script language="javascript">
+
+  /*
+  *函数功能：明细新增一行
+  *参数说明：使用JQTr_Add() 函数新增行时，需写在 tbody 标记中
+  */
+  function Add_OrderOut(GdGid,GdCode,GdName,UpperCode,UpperName,GdSpec,GdUnit,GdStock,OpQty){
+    var sTbId = 'tb_Gd_Out';
+    var sTrClass = 'listtd';
+    var tdArr = new Array();
+    var iRow = Math.floor(Math.random() * 100000 + 1);
+    var i = $("table#"+sTbId+">tbody>tr").length + 1;
+    var k = 0;
+    if (GdGid == null){
+      GdGid = '';
+      GdCode = '';
+      GdName = '';
+      UpperCode = '';
+      UpperName = '';
+      GdSpec = '';
+      GdUnit = '';
+      GdStock = '0';
+    }
+    if (OpQty == null) {
+      OpQty = '';
+    }
+
+    tdArr[k++] = '<td><INPUT TYPE="text" NAME="Line_1" value="'+ i +'" style="border:0px;width:100%;text-align:center" readonly class="JQText"></td>';
+
+    tdArr[k++] = '<td>'
+      +'<table width="100%" class="ListBar JQMust" cellpadding="0" cellspacing="1" style="margin-top:2px;">'
+        +'<colgroup>'
+           +'<col style="width:15%">'
+           +'<col style="width:20%">'
+           +'<col style="width:15%">'
+           +'<col style="width:15%">'
+           +'<col style="width:15%">'
+           +'<col style="width:10%">'
+           +'<col style="width:10%">'
+        +'</colgroup>'
+        +'<thead>'
+        +'<tr class="DtlBarTitle" align="center">'
+          +'<td>编号</td>'
+          +'<td>名称</td>'
+          +'<td>分类</td>'
+          +'<td>规格</td>'
+          +'<td>单位</td>'
+          +'<td>数量</td>'
+        +'</tr>'
+        +'</thead>'
+        +'<tbody>'
+        +'<tr class="ListTd">'
+          +'<td><a href="##HDNet_AppName##/__ExplainModule?Url=HTX_Goods_Dtl&UsrGid=<HDPrint Value=#UsrGid#>&Gid='+GdGid+'" target="_blank">'+GdCode+'</a></td>'
+          +'<td>'+GdName+'</td>'
+          +'<td>'+UpperName+'</td>'
+          +'<td>'+GdSpec+'</td>'
+          +'<td>'+GdUnit+'</td>'
+          +'<td>'+OpQty+'</td>'
+        +'</tr>'
+        +'</tbody>'
+      +'</table>'
+
+      +'<table width="100%" class="ListBar JQMust" cellpadding="0" cellspacing="1" id="tb_RcdOut'+GdGid+'" style="margin:2px 0px;">'
+        +'<colgroup>'
+          +'<col style="width:20%">'
+          +'<col style="width:20%">'
+          +'<col style="width:20%">'
+          +'<col style="width:20%">'
+          +'<col style="width:20%">'
+        +'</colgroup>'
+        +'<thead>'
+        +'<tr class="DtlBarTitle" align="center">'
+          +'<td>辅料入库单号</td>'
+          +'<td>入库批次</td>'
+          +'<td>入库商品编号</td>'
+          +'<td>入库商品名称</td>'
+          +'<td>扣减数量</td>'
+        +'</tr>'
+        +'</thead>'
+        +'<tbody>'
+        +'</tbody>'
+      +'</table>'
+    +'</td>';
+    //新增一行
+    JQTr_Add(sTbId,sTrClass,tdArr);
+  }
+
+   /*
+  *函数功能：明细新增一行
+  *参数说明：使用JQTr_Add() 函数新增行时，需写在 tbody 标记中
+  */
+  function Add_OrderOutRcd(OpGid,OpNum,OpStat,OpTypeUrl,OpGdGid,OpGdCode,OpGdName,GdStock,OpQty){
+    var sTbId = 'tb_RcdOut'+OpGdGid;
+    var sTrClass = 'listtd';
+    var tdArr = new Array();
+    var iRow = Math.floor(Math.random() * 100000 + 1);
+    var i = $("table#"+sTbId+">tbody>tr").length + 1;
+    var k = 0;
+    if (OpGid == null){
+      OpGid = '';
+      OpNum = '';
+      OpDate = '';
+      OpGdGid = '';
+      OpGdCode = '';
+      OpGdName = '';
+      GdStock = '';
+    }
+    if (OpQty == null) {
+      OpQty = '0';
+    }
+
+    tdArr[k++] = '<td>'+OpGid+'</td>';
+
+    tdArr[k++] = '<td>'+OpNum+'</td>';
+    tdArr[k++] = '<td>'+OpGdCode+'</td>';
+    tdArr[k++] = '<td>'+OpGdName+'</td>';
+    tdArr[k++] = '<td>'+OpQty+'</td>';
+
+    //新增一行
+    JQTr_Add(sTbId,sTrClass,tdArr);
+  }
+
+</script>
+<form name="frmDo" method="post" action="">
+<h3 class="TitleBar"><HDPrint Value=#ModuleAtype#>-><HDPrint Value=#ModuleName#></h3>
+<div id="JQ_ToolBar">
+<TABLE width="100%" class="ButtonBar" cellpadding=0 cellspacing=0>
+  <col style="width:100%">
+  <TR>
+    <TD>
+      <B>工具栏：</B>
+      <HDIF Equal(<HDPrint Value=#chkRtID1#>, 1)>
+        <A HREF="##HDNet_AppName##/__ExplainModule?Url=HTX_Order10_Mod&UsrGid=<HDPrint Value=#UsrGid#>&Gid=<HDPrint Value=#Gid#>"><FONT class="IconMod">　&nbsp;</FONT> 修改</A>
+      </HDIF>
+      <HDIF Equal(<HDPrint Value=#chkRtID2#>, 1)>
+      <a href="##HDNet_AppName##/__ExplainModule?Url=HTX_Order10_Del&UsrGid=<HDPrint Value=#UsrGid#>&Gid=<HDPrint Value=#Gid#>" onclick="javascript:if (!(confirm('你确定要删除该信息吗？\n删除操作是不能还原的！'))) return false;"><FONT class="IconDel">　&nbsp;</FONT> 删除</A>
+      </HDIF>
+     |
+      <A HREF="javascript:location.reload();void(0)"><FONT class="IconRefresh">　&nbsp;</FONT> 刷新</A>
+    </TD>
+  </TR>
+</TABLE>
+</div>
+<table  width="100%" class="ListBar" cellspacing="1">
+  <colgroup>
+    <col style="padding-left:4px;width:10%">
+    <col style="padding-left:4px;width:23%">
+    <col style="padding-left:4px;width:10%">
+    <col style="padding-left:4px;width:23%">
+    <col style="padding-left:4px;width:10%">
+    <col style="padding-left:4px;width:23%">
+  </colgroup>
+  <tr>
+    <td class="DtlBarTitle">单号:</td>
+    <td class="listtd"><HDPrint Value=#Gid#></td>
+    <td class="DtlBarTitle">批次:</td>
+    <td class="listtd"><HDPrint Value=#Num#></td>
+    <td class="DtlBarTitle">出库日期:</td>
+    <td class="listtd"><HDPrint Value=#OpDate#></td>
+  </tr>
+  <tr valign="top">
+    <td class="DtlBarTitle">备注:</td>
+    <td class="listtd" colspan="5"><HDPrint Value=#Memo#></td>
+  </tr>
+</table>
+<h3 class="SubTitleBar" >
+<TABLE cellspacing="1" cellpadding="0" width="100%">
+  <col style="padding-left:4px;">
+  <col style="width:20px;" align="center">
+  <TR>
+    <TD align="left" style="padding-left:10px;"><b>辅料信息</b></TD>
+    <TD onclick="JQExpand('tb_Dtl')"  style="cursor:hand" class="IconUp">　&nbsp;</TD>
+  </TR>
+</TABLE>
+</h3>
+<table width="100%" class="ListBar JQMust" cellpadding="0"  cellspacing="1" id="tb_Gd_Out">
+  <colgroup>
+     <col style="width:5%">
+     <col style="width:90%">
+  </colgroup>
+  <thead>
+  <tr class="DtlBarTitle">
+    <td align="center">行号</td>
+    <td align="center">辅料信息</td>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<HDPrint Value=#GdList# Replace=#None#>
+<HDPrint Value=#RcdList# Replace=#None#>
+</form>
+<script language="javascript">
+  //函数：ready
+  //功能：document 加载完成后调用
+  $(function(){
+    //复制一个工具栏
+    var $ToolBar = $("div#JQ_ToolBar");
+    //$("form[name=frmDo]").append($ToolBar.html());
+  });
+</script>

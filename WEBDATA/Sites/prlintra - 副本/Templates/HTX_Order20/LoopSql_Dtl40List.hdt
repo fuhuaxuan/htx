@@ -1,0 +1,10 @@
+
+<hdloop>
+  <tr class="listtd">
+    <td><HDPrint Value=#OpGid#></td>
+    <td><HDPrint Value=#OpNum#></td>
+    <td><HDPrint Value=#OpGdCode#></td>
+    <td><HDPrint Value=#OpGdName#></td>
+    <td align="center"><HDPrint Value=#OpQty#></td>
+  </tr>
+</hdloop>

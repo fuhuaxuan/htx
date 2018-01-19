@@ -1,0 +1,16 @@
+<script>
+  <hdloop>
+    Add_OrderOut('<HDPrint Value=#GdGid# Replace=#DBField2Js#>',
+'<HDPrint Value=#GdCode# Replace=#DBField2Js#>',
+'<HDPrint Value=#GdName# Replace=#DBField2Js#>',
+'<HDPrint Value=#UpperCode# Replace=#DBField2Js#>',
+'<HDPrint Value=#UpperName# Replace=#DBField2Js#>',
+'<HDPrint Value=#GdSpec# Replace=#DBField2Js#>',
+'<HDPrint Value=#GdUnit# Replace=#DBField2Js#>',
+'<HDPrint Value=#GdStock# Replace=#DBField2Js#>',
+'<HDPrint Value=#OtherGid# Replace=#DBField2Js#>',
+'<HDPrint Value=#OtherCode# Replace=#DBField2Js#>',
+'<HDPrint Value=#OtherName# Replace=#DBField2Js#>',
+'<HDPrint Value=#OpQty# Replace=#DBField2Js#>');
+  </hdloop>
+</script>

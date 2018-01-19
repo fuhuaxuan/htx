@@ -1,0 +1,680 @@
+<script>
+
+  /*
+  *函数功能：明细新增一行
+  *参数说明：使用JQTr_Add() 函数新增行时，需写在 tbody 标记中
+  */
+  function Add_OrderIn(GdGid,GdCode,GdName,UpperCode,UpperName,GdSpec,GdUnit,ProPlace,OtherGid,OtherCode,OtherName,OpQty,OpFee,OpFeeA,OpFeeB){
+    var sTbId = 'tb_Gd_In';
+    var sTrClass = 'listtd';
+    var tdArr = new Array();
+    var iRow = Math.floor(Math.random() * 100000 + 1);
+    var i = $("table#"+sTbId+">tbody>tr").length + 1;
+    var k = 0;
+    if (GdGid == null){
+      GdGid = '';
+      GdCode = '';
+      GdName = '';
+      UpperCode = '';
+      UpperName = '';
+      GdSpec = '';
+      GdUnit = '';
+    }
+    if (ProPlace == null) {
+      ProPlace = '';
+    }
+    if (OtherGid == null) {
+      OtherGid = '';
+      OtherCode = '';
+      OtherName = '';
+    }
+    if (OpQty == null) {
+      OpQty = '';
+    }
+    if (OpFee == null) {
+      OpFee = '';
+    }
+    if (OpFeeA == null) {
+      OpFeeA = '';
+    }
+    if (OpFeeB == null) {
+      OpFeeB = '';
+    }
+    if (!JQgetSingle('GdGid_1',GdGid)) {
+      alert('该商品已经存在！');
+      return;
+    }
+
+    tdArr[k++] = '<td align="center"><INPUT TYPE="text" NAME="Line_1" value="'+ i +'" style="border:0px;text-align:center" readonly class="JQText"></td>';
+
+    tdArr[k++] = '<td>'
+      +GdCode
+      +'<INPUT TYPE="hidden" NAME="GdGid_1" ID="GdGid_1'+ iRow +'" maxlength="32" class="JQText" value = "'+GdGid+'">'
+      +'<INPUT TYPE="hidden" NAME="GdCode_1" ID="GdCode_1'+ iRow +'" maxlength="32" class="JQText" value = "'+GdCode+'">'
+    +'</td>';
+
+    tdArr[k++] = '<td>'
+      +GdName
+      +'<INPUT TYPE="hidden" NAME="GdName_1" ID="GdName_1'+ iRow +'" maxlength="32" class="JQText" value = "'+GdName+'">'
+    +'</td>';
+
+    tdArr[k++] = '<td>'
+      +UpperName
+      +'<INPUT TYPE="hidden" NAME="UpperName_1" ID="UpperName_1'+ iRow +'" maxlength="32" class="JQText" value = "'+UpperName+'">'
+      +'<INPUT TYPE="hidden" NAME="UpperCode_1" ID="UpperCode_1'+ iRow +'" maxlength="32" class="JQText" value = "'+UpperCode+'">'
+    +'</td>';
+
+    tdArr[k++] = '<td>'
+      +GdSpec
+      +'<INPUT TYPE="hidden" NAME="GdSpec_1" ID="GdSpec_1'+ iRow +'" maxlength="32" class="JQText" value = "'+GdSpec+'">'
+    +'</td>';
+
+    tdArr[k++] = '<td>'
+      +GdUnit
+      +'<INPUT TYPE="hidden" NAME="GdUnit_1" ID="GdUnit_1'+ iRow +'" maxlength="32" class="JQText" value = "'+GdUnit+'">'
+    +'</td>';
+
+    tdArr[k++] = '<td>'
+      +'<INPUT TYPE="text" NAME="ProPlace_1" ID="ProPlace_1'+ iRow +'" maxlength="32" class="JQText JQMust" value = "'+ProPlace+'">'
+    +'</td>';
+
+    tdArr[k++] = '<td>'
+      +'<INPUT TYPE="text" NAME="OtherName_1" ID="OtherName_1'+ iRow +'" maxlength="32" class="JQText" value = "'+OtherName+'" onclick="getVendor(\''+iRow+'\')" readonly>'
+      +'<INPUT TYPE="hidden" NAME="OtherGid_1" ID="OtherGid_1'+ iRow +'" maxlength="32" class="JQText" value = "'+OtherGid+'">'
+      +'<INPUT TYPE="hidden" NAME="OtherCode_1" ID="OtherCode_1'+ iRow +'" maxlength="32" class="JQText" value = "'+OtherCode+'">'
+    +'</td>';
+
+    tdArr[k++] = '<td><INPUT TYPE="text" NAME="OpQty_1" ID="OpQty_1'+ iRow +'" maxlength="16" class="JQInt JQMust" value = "'+OpQty+'"></td>';
+
+    tdArr[k++] = '<td><INPUT TYPE="text" NAME="OpFee_1" ID="OpFee_1'+ iRow +'" maxlength="16" class="JQFloat JQMust" value = "'+OpFee+'"></td>';
+
+    tdArr[k++] = '<td><INPUT TYPE="text" NAME="OpFeeA_1" ID="OpFeeA_1'+ iRow +'" maxlength="16" class="JQFloat JQMust" value = "'+OpFeeA+'"></td>';
+
+    tdArr[k++] = '<td><INPUT TYPE="text" NAME="OpFeeB_1" ID="OpFeeB_1'+ iRow +'" maxlength="16" class="JQFloat JQMust" value = "'+OpFeeB+'"></td>';
+
+    tdArr[k++] ='<td align="center"><a href="javascript:void(0)" onclick="javascript:JQTr_Del();JqReCal()">删除</a></td>';
+
+    //新增一行
+    JQTr_Add(sTbId,sTrClass,tdArr);
+  }
+
+  var g_Row = '';
+  function getVendor(JsRow){
+    g_Row = JsRow;
+    DataInterface(frmDataInterface_Vdr);
+  }
+  function getFactory(JsRow){
+    g_Row = JsRow;
+    DataInterface(frmDataInterface_Factory);
+  }
+  function callVendor(JsGid,JsCode,JsName){
+    $("input#OtherGid_1"+g_Row).val(JsGid);
+    $("input#OtherCode_1"+g_Row).val(JsCode);
+    $("input#OtherName_1"+g_Row).val(JsName);
+  }
+  /*
+  *函数功能：明细新增一行
+  *参数说明：使用JQTr_Add() 函数新增行时，需写在 tbody 标记中
+  */
+  function Add_OrderOut(GdGid,GdCode,GdName,UpperCode,UpperName,GdSpec,GdUnit,GdStock,OtherGid,OtherCode,OtherName,OpQty){
+    var sTbId = 'tb_Gd_Out';
+    var sTrClass = 'listtd';
+    var tdArr = new Array();
+    var iRow = Math.floor(Math.random() * 100000 + 1);
+    var i = $("table#"+sTbId+">tbody>tr").length + 1;
+    var k = 0;
+    if (GdGid == null){
+      GdGid = '';
+      GdCode = '';
+      GdName = '';
+      UpperCode = '';
+      UpperName = '';
+      GdSpec = '';
+      GdUnit = '';
+      GdStock = '0';
+    }
+    if (OtherGid == null) {
+      OtherGid = '';
+      OtherCode = '';
+      OtherName = '';
+    }
+    if (OpQty == null) {
+      OpQty = '';
+    }
+     if (!JQgetSingle('GdGid_1',GdGid)) {
+      alert('该商品已经存在！');
+      return;
+    }
+
+
+    tdArr[k++] = '<td><INPUT TYPE="text" NAME="Line_1" value="'+ i +'" style="border:0px;width:100%;text-align:center" readonly class="JQText"></td>';
+
+    tdArr[k++] = '<td>'
+      +'<table width="100%" class="ListBar JQMust" cellpadding="0" cellspacing="1" style="margin-top:2px;">'
+        +'<colgroup>'
+           +'<col style="width:15%">'
+           +'<col style="width:15%">'
+           +'<col style="width:15%">'
+           +'<col style="width:15%">'
+           +'<col style="width:10%">'
+           +'<col style="width:10%">'
+           +'<col style="width:10%">'
+        +'</colgroup>'
+        +'<thead>'
+        +'<tr class="DtlBarTitle" align="center">'
+          +'<td>编号</td>'
+          +'<td>名称</td>'
+          +'<td>分类</td>'
+          +'<td>规格</td>'
+          +'<td>单位</td>'
+          +'<td>库存</td>'
+          +'<td>数量<font color ="red">*</font></td>'
+        +'</tr>'
+        +'</thead>'
+        +'<tbody>'
+        +'<tr class="ListTd">'
+          +'<td>'
+            +GdCode
+            +'<INPUT TYPE="hidden" NAME="GdGid_1" ID="GdGid_1'+ iRow +'" maxlength="32" class="JQText" value = "'+GdGid+'">'
+            +'<INPUT TYPE="hidden" NAME="GdCode_1" ID="GdCode_1'+ iRow +'" maxlength="32" class="JQText" value = "'+GdCode+'">'
+          +'</td>'
+          +'<td>'
+            +GdName
+            +'<INPUT TYPE="hidden" NAME="GdName_1" ID="GdName_1'+ iRow +'" maxlength="32" class="JQText" value = "'+GdName+'">'
+          +'</td>'
+          +'<td>'
+            +UpperName
+            +'<INPUT TYPE="hidden" NAME="UpperName_1" ID="UpperName_1'+ iRow +'" maxlength="32" class="JQText" value = "'+UpperName+'">'
+            +'<INPUT TYPE="hidden" NAME="UpperCode_1" ID="UpperCode_1'+ iRow +'" maxlength="32" class="JQText" value = "'+UpperCode+'">'
+          +'</td>'
+          +'<td>'
+            +GdSpec
+            +'<INPUT TYPE="hidden" NAME="GdSpec_1" ID="GdSpec_1'+ iRow +'" maxlength="32" class="JQText" value = "'+GdSpec+'">'
+          +'</td>'
+          +'<td>'
+            +GdUnit
+            +'<INPUT TYPE="hidden" NAME="GdUnit_1" ID="GdUnit_1'+ iRow +'" maxlength="32" class="JQText" value = "'+GdUnit+'">'
+          +'</td>'
+          +'<td>'
+            +GdStock
+            +'<INPUT TYPE="hidden" NAME="GdStock_1" ID="GdStock_1'+ iRow +'" maxlength="32" class="JQText" value = "'+GdStock+'">'
+          +'</td>'
+          +'<td><INPUT TYPE="text" NAME="OpQty_1" ID="OpQty_1'+ iRow +'" maxlength="16" class="JQInt JQMust" value = "'+OpQty+'" JQMin="0" JQMax="'+GdStock+'" onchange="getOrderOut(this,\''+GdGid+'\')"></td>'
+        +'</tr>'
+        +'</tbody>'
+      +'</table>'
+
+      +'<table width="100%" class="ListBar JQMust" cellpadding="0" cellspacing="1" id="tb_RcdOut'+GdGid+'" style="margin:2px 0px;">'
+        +'<colgroup>'
+          +'<col style="width:20%">'
+          +'<col style="width:10%">'
+          +'<col style="width:10%">'
+          +'<col style="width:15%">'
+          +'<col style="width:20%">'
+          +'<col style="width:15%">'
+          +'<col style="width:10%">'
+        +'</colgroup>'
+        +'<thead>'
+        +'<tr class="DtlBarTitle" align="center">'
+          +'<td>原料入库单号</td>'
+          +'<td>入库批次</td>'
+          +'<td>入库日期</td>'
+          +'<td>入库商品编号</td>'
+          +'<td>入库商品名称</td>'
+          +'<td>剩余数量</td>'
+          +'<td>扣减数量</td>'
+        +'</tr>'
+        +'</thead>'
+        +'<tbody>'
+        +'</tbody>'
+      +'</table>'
+    +'</td>';
+
+    tdArr[k++] ='<td align="center"><a href="javascript:void(0)" onclick="javascript:JQTr_Del();JqReCal(\'CT\');">删除</a></td>';
+
+    //新增一行
+    JQTr_Add(sTbId,sTrClass,tdArr);
+  }
+
+   /*
+  *函数功能：明细新增一行
+  *参数说明：使用JQTr_Add() 函数新增行时，需写在 tbody 标记中
+  */
+  function Add_OrderOutRcd(OpGid,OpNum,OpDate,OpGdGid,OpGdCode,OpGdName,GdStock,OpQty){
+    var sTbId = 'tb_RcdOut'+OpGdGid;
+    var sTrClass = 'listtd';
+    var tdArr = new Array();
+    var iRow = Math.floor(Math.random() * 100000 + 1);
+    var i = $("table#"+sTbId+">tbody>tr").length + 1;
+    var k = 0;
+    if (OpGid == null){
+      OpGid = '';
+      OpNum = '';
+      OpDate = '';
+      OpGdGid = '';
+      OpGdCode = '';
+      OpGdName = '';
+      GdStock = '';
+    }
+    if (OpQty == null) {
+      OpQty = '';
+    }
+
+    tdArr[k++] = '<td>'
+      +OpGid
+    +'</td>';
+
+    tdArr[k++] = '<td>'+OpNum+'</td>';
+    tdArr[k++] = '<td>'+OpDate+'</td>';
+    tdArr[k++] = '<td>'+OpGdCode+'</td>';
+    tdArr[k++] = '<td>'+OpGdName+'</td>';
+    tdArr[k++] = '<td>'+GdStock+'</td>';
+
+    tdArr[k++] = '<td>'
+      +OpQty
+      +'<INPUT TYPE="hidden" NAME="OpGdQty_1'+ OpGdGid +'" ID="OpGdQty_1'+ iRow +'" maxlength="32" class="JQText" value = "'+OpQty+'">'
+      +'<INPUT TYPE="hidden" NAME="OpGid_1" ID="OpGid_1'+ iRow +'" maxlength="32" class="JQText" value = "'+OpGid+'">'
+      +'<INPUT TYPE="hidden" NAME="OpNum_1" ID="OpNum_1'+ iRow +'" maxlength="32" class="JQText" value = "'+OpNum+'">'
+      +'<INPUT TYPE="hidden" NAME="OpGdGid_1" ID="OpGdGid_1'+ iRow +'" maxlength="32" class="JQText" value = "'+OpGdGid+'">'
+      +'<INPUT TYPE="hidden" NAME="OGdGid_1" ID="OGdGid_1'+ iRow +'" maxlength="32" class="JQText" value = "'+OpGdGid+'">'
+    +'</td>';
+
+    //新增一行
+    JQTr_Add(sTbId,sTrClass,tdArr);
+  }
+
+  function getOrderOut(JsObj,GdGid){
+    $("table#tb_RcdOut"+GdGid+">tbody").empty();
+    var $obj = $(JsObj);
+    if ($obj.val() == '') {
+      return;
+    }
+    var curQty = parseFloat($obj.val());
+
+    //调用路径
+    //若在报表(RepDisplay)中使用，则标记Rep=1
+    //若在流程(WFFlowPage)中使用，则标记Flow=1
+    var url = '##HDNet_AppName##/__ExplainAjax?Url=<HDPrint Value=#Url#>&UsrGid=<HDPrint Value=#UsrGid#>&OpAtype=3';
+
+    //参数
+    var data = {
+      OpStat : '<HDPrint Value=#OpStat#>',
+      OpGdGid : GdGid
+    };
+
+    var JsQty = 0;
+
+    //回调函数
+    var cb = {
+      //成功，处理函数
+      success : function (ret){
+        $.each(ret.Master,function (i,item){
+          if (curQty - JsQty >= 0) {
+            if (curQty - JsQty >= parseFloat(item.GDSTOCK)) {
+              OpQty = item.GDSTOCK;
+            }
+            else{
+              OpQty = curQty - JsQty;
+            }
+            if (OpQty > 0) {
+              JsQty += OpQty;
+              Add_OrderOutRcd(item.OPGID,item.OPNUM,item.OPDATE,item.OPGDGID,item.OPGDCODE,item.OPGDNAME,item.GDSTOCK,OpQty);
+            }
+          }
+        });
+        return true;
+      },
+      //失败，处理函数
+      failed : function (ret){
+        alert('对不起，未找到入库单信息！');
+        return false;
+      }
+    };
+    //调用Ajax函数
+    JQAjax(url,data,cb);
+  }
+
+/*
+  *函数功能：明细新增一行
+  *参数说明：使用JQTr_Add() 函数新增行时，需写在 tbody 标记中
+  */
+  function Add_OrderStock(OpGid,OpNum,OpDate,OpGdGid,OpGdCode,OpGdName,GdStock,OpQty,OpFee,OpFeeA,OpFeeB){
+    var sTbId = 'tb_Gd_Stock';
+    var sTrClass = 'listtd';
+    var tdArr = new Array();
+    var iRow = Math.floor(Math.random() * 100000 + 1);
+    var i = $("table#"+sTbId+">tbody>tr").length + 1;
+    var k = 0;
+    if (OpGid == null){
+      OpGid = '';
+      OpNum = '';
+      OpDate = '';
+      OpGdGid = '';
+      OpGdCode = '';
+      OpGdName = '';
+      GdStock = '';
+    }
+    if (OpQty == null) {
+      OpQty = '';
+    }
+    if (OpFee == null) {
+      OpFee = '0';
+    }
+    if (!JQgetSingle('Gid_1',OpGid+OpGdGid)) {
+      alert('该商品已经存在！');
+      return;
+    }
+
+    tdArr[k++] = '<td align="center"><INPUT TYPE="text" NAME="Line_1" value="'+ i +'" style="border:0px;text-align:center" readonly class="JQText"></td>';
+
+    tdArr[k++] = '<td>'
+      +OpGid
+      +'<INPUT TYPE="hidden" NAME="Gid_1" ID="Gid_1'+ iRow +'" maxlength="32" class="JQText" value = "'+OpGid+OpGdGid+'">'
+      +'<INPUT TYPE="hidden" NAME="OpGid_1" ID="OpGid_1'+ iRow +'" maxlength="32" class="JQText" value = "'+OpGid+'">'
+      +'<INPUT TYPE="hidden" NAME="OpNum_1" ID="OpNum_1'+ iRow +'" maxlength="32" class="JQText" value = "'+OpNum+'">'
+      +'<INPUT TYPE="hidden" NAME="OpGdGid_1" ID="OpGdGid_1'+ iRow +'" maxlength="32" class="JQText" value = "'+OpGdGid+'">'
+      +'<INPUT TYPE="hidden" NAME="OGdGid_1" ID="OGdGid_1'+ iRow +'" maxlength="32" class="JQText" value = "'+OpGdGid+'">'
+    +'</td>';
+
+    tdArr[k++] = '<td>'+OpNum+'</td>';
+    tdArr[k++] = '<td>'+OpGdCode+'</td>';
+    tdArr[k++] = '<td>'+OpGdName+'</td>';
+    tdArr[k++] = '<td>'+GdStock+'</td>';
+
+    tdArr[k++] = '<td><INPUT TYPE="text" NAME="OpQty_1" ID="OpQty_1'+ iRow +'" maxlength="16" class="JQInt JQMust" value = "'+OpQty+'" JQMin="'+(0-GdStock)+'"></td>';
+
+    tdArr[k++] = '<td><INPUT TYPE="text" NAME="OpFee_1" ID="OpFee_1'+ iRow +'" maxlength="16" class="JQFloat JQMust" value = "'+OpFee+'"></td>';
+
+    tdArr[k++] ='<td align="center"><a href="javascript:void(0)" onclick="javascript:JQTr_Del();JqReCal()">删除</a></td>';
+
+    //新增一行
+    JQTr_Add(sTbId,sTrClass,tdArr);
+  }
+
+/*
+  *函数功能：明细新增一行
+  *参数说明：使用JQTr_Add() 函数新增行时，需写在 tbody 标记中
+  */
+  function Add_OrderBack(OpGid,OpNum,OpDate,OpGdGid,OpGdCode,OpGdName,GdStock,OpQty){
+    var sTbId = 'tb_Gd_Back';
+    var sTrClass = 'listtd';
+    var tdArr = new Array();
+    var iRow = Math.floor(Math.random() * 100000 + 1);
+    var i = $("table#"+sTbId+">tbody>tr").length + 1;
+    var k = 0;
+    if (OpGid == null){
+      OpGid = '';
+      OpNum = '';
+      OpDate = '';
+      OpGdGid = '';
+      OpGdCode = '';
+      OpGdName = '';
+      GdStock = '';
+    }
+    if (OpQty == null) {
+      OpQty = '';
+    }
+    if (!JQgetSingle('Gid_1',OpGid+OpGdGid)) {
+      alert('该商品已经存在！');
+      return;
+    }
+
+    tdArr[k++] = '<td align="center"><INPUT TYPE="text" NAME="Line_1" value="'+ i +'" style="border:0px;text-align:center" readonly class="JQText"></td>';
+
+    tdArr[k++] = '<td>'
+      +OpGid
+      +'<INPUT TYPE="hidden" NAME="Gid_1" ID="Gid_1'+ iRow +'" maxlength="32" class="JQText" value = "'+OpGid+OpGdGid+'">'
+      +'<INPUT TYPE="hidden" NAME="OpGid_1" ID="OpGid_1'+ iRow +'" maxlength="32" class="JQText" value = "'+OpGid+'">'
+      +'<INPUT TYPE="hidden" NAME="OpNum_1" ID="OpNum_1'+ iRow +'" maxlength="32" class="JQText" value = "'+OpNum+'">'
+      +'<INPUT TYPE="hidden" NAME="OpGdGid_1" ID="OpGdGid_1'+ iRow +'" maxlength="32" class="JQText" value = "'+OpGdGid+'">'
+      +'<INPUT TYPE="hidden" NAME="OGdGid_1" ID="OGdGid_1'+ iRow +'" maxlength="32" class="JQText" value = "'+OpGdGid+'">'
+    +'</td>';
+
+    tdArr[k++] = '<td>'+OpNum+'</td>';
+    tdArr[k++] = '<td>'+OpGdCode+'</td>';
+    tdArr[k++] = '<td>'+OpGdName+'</td>';
+    tdArr[k++] = '<td>'+GdStock+'</td>';
+
+    tdArr[k++] = '<td><INPUT TYPE="text" NAME="OpQty_1" ID="OpQty_1'+ iRow +'" maxlength="16" class="JQInt JQMust" value = "'+OpQty+'" JQMin="0" JQMax="'+GdStock+'"></td>';
+
+    tdArr[k++] ='<td align="center"><a href="javascript:void(0)" onclick="javascript:JQTr_Del();JqReCal()">删除</a></td>';
+
+    //新增一行
+    JQTr_Add(sTbId,sTrClass,tdArr);
+  }
+  /*
+  *函数功能：删除行，重新计算
+  */
+  function JqReCal(){
+    //重新计算行号
+    $("input[name=Line_1]").each(function(i){
+      $(this).val(i+1);
+    });
+    //重新计算合计
+    $("input[JQRowSum]").each(function(){
+      JQSum($(this),'JQRow');
+    });
+  }
+  //提交函数
+  function CheckSubmit(){
+    //定义 提交提示文字
+    var sConfirm = '您确定已经填写完成，并保存吗？';
+    //提交时，验证必填项
+    if (!JQcheck("JQMust")){
+      return false;
+    }
+    //提交时，提示
+    if (!(confirm(sConfirm)))
+      return false;
+
+    //获取当前表单对象
+    var JqObj = $("form[name=frmDo]");
+    //表单参数设定
+    JqObj.attr({
+      "action":'##HDNet_AppName##/__ExplainModule?Url=<HDPrint Value=#Url#>Save&UsrGid=<HDPrint Value=#UsrGid#>',
+      "target":'_self'
+    });
+    //表单提交
+    JqObj.submit();
+
+    //操作按钮变为不可用
+    $("a[name=btn_1]").prop("disabled",true);
+
+    //本函数失效
+    CheckSubmit = function() {return false;}
+  }
+  //函数：ready
+  //功能：document 加载完成后调用
+  $(document).ready(function(){
+    //复制一个工具栏
+    var $ToolBar = $("div#JQ_ToolBar");
+    //$("form[name=frmDo]").append($ToolBar.html());
+  });
+</script>
+
+<script language="javascript" src="##GetWebRootPath(/Scripts/DataInterface.js)##"></script>
+<!--选择审批人调用-->
+<FORM NAME="frmDataInterface_App" ACTION="">
+  <INPUT TYPE="hidden" name="DataInterface_Title" ID="t_App" value="用户列表">
+
+  <INPUT TYPE="hidden" name="DataInterface_Sql" ID="s_App" value="select u.gid, u.code, u.name, u.atype from v_usr u, v_org_usr v, org o where u.EntGid = '<HDPrint Value=#EntGid#>' and u.EntGid = v.EntGid and u.EntGid = o.EntGid and u.Gid = v.Usrgid and v.OrgGid = o.Gid and lower(o.Code) = lower('all_usr_grp')">
+  <INPUT TYPE="hidden" name="DataInterface_CountSql" ID="c_App" value="select count(*) from v_usr u, v_org_usr v, org o where u.EntGid = '<HDPrint Value=#EntGid#>' and u.EntGid = v.EntGid and u.EntGid = o.EntGid and u.Gid = v.Usrgid and v.OrgGid = o.Gid and lower(o.Code) = lower('all_usr_grp')">
+  <INPUT TYPE="hidden" name="DataInterface_OrderSql" value="order by u.code">
+  <INPUT TYPE="hidden" name="DataInterface_UsrGid" value="<HDPrint Value=#UsrGid#>">
+  <INPUT TYPE="hidden" name="DataInterface_AppName" value="##HDNet_AppName##">
+
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="2^代码^left^100">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="3^姓名^left^100">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="4^类别^left^100">
+
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="u.code^用户代码^1">
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="u.name^用户姓名^1">
+  <input TYPE="hidden" name="DataInterface_Search_Sql" value="">
+  <input TYPE="hidden" name="DataInterface_Search_Cols" value="">
+
+  <INPUT TYPE="hidden" name="DataInterface_FieldTo" value="OpGid^OpCode^OpName">
+  <INPUT TYPE="hidden" name="DataInterface_FieldBy" value="1^2^3">
+  <INPUT TYPE="hidden" name="DataInterface_CallBckFunc" value="">
+  <INPUT TYPE="hidden" name="DataInterface_Close" value="true">
+</FORM>
+<!--选择审批人调用-->
+<FORM NAME="frmDataInterface_Vdr" ACTION="">
+  <INPUT TYPE="hidden" name="DataInterface_Title" ID="t_App" value="供应商列表">
+
+  <INPUT TYPE="hidden" name="DataInterface_Sql" ID="s_App" value="select v.Gid,v.Code,v.Name,v.Address,v.Contactor,v.ContactWay,v.Area from HTX_Vendor v where v.EntGid = '<HDPrint Value=#EntGid#>'">
+  <INPUT TYPE="hidden" name="DataInterface_CountSql" ID="c_App" value="select count(*) from HTX_Vendor v where v.EntGid = '<HDPrint Value=#EntGid#>'">
+  <INPUT TYPE="hidden" name="DataInterface_OrderSql" value="order by v.code">
+  <INPUT TYPE="hidden" name="DataInterface_UsrGid" value="<HDPrint Value=#UsrGid#>">
+  <INPUT TYPE="hidden" name="DataInterface_AppName" value="##HDNet_AppName##">
+
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="2^代码^left^100">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="3^姓名^left^100">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="5^联系人^left^60">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="7^区域^left^60">
+
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="v.code^代码^1">
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="v.name^姓名^1">
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="v.Contactor^联系人^1">
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="v.Area^区域^1">
+  <input TYPE="hidden" name="DataInterface_Search_Sql" value="">
+  <input TYPE="hidden" name="DataInterface_Search_Cols" value="">
+
+  <INPUT TYPE="hidden" name="DataInterface_FieldTo" value="">
+  <INPUT TYPE="hidden" name="DataInterface_FieldBy" value="1^2^3">
+  <INPUT TYPE="hidden" name="DataInterface_CallBckFunc" value="callVendor">
+  <INPUT TYPE="hidden" name="DataInterface_Close" value="true">
+</FORM>
+
+<!--选择审批人调用-->
+<FORM NAME="frmDataInterface_Factory" ACTION="">
+  <INPUT TYPE="hidden" name="DataInterface_Title" ID="t_App" value="加工场地列表">
+
+  <INPUT TYPE="hidden" name="DataInterface_Sql" ID="s_App" value="select v.Gid,v.Code,v.Address from HTX_Factory v where v.EntGid = '<HDPrint Value=#EntGid#>' and type = 10">
+  <INPUT TYPE="hidden" name="DataInterface_CountSql" ID="c_App" value="select count(*) from HTX_Factory v where v.EntGid = '<HDPrint Value=#EntGid#>' and type = 10">
+  <INPUT TYPE="hidden" name="DataInterface_OrderSql" value="order by v.code">
+  <INPUT TYPE="hidden" name="DataInterface_UsrGid" value="<HDPrint Value=#UsrGid#>">
+  <INPUT TYPE="hidden" name="DataInterface_AppName" value="##HDNet_AppName##">
+
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="2^代码^left^100">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="3^姓名^left^100">
+
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="v.code^代码^1">
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="v.name^姓名^1">
+  <input TYPE="hidden" name="DataInterface_Search_Sql" value="">
+  <input TYPE="hidden" name="DataInterface_Search_Cols" value="">
+
+  <INPUT TYPE="hidden" name="DataInterface_FieldTo" value="OpGid^OpCode^OpName">
+  <INPUT TYPE="hidden" name="DataInterface_FieldBy" value="1^2^3">
+  <INPUT TYPE="hidden" name="DataInterface_CallBckFunc" value="">
+  <INPUT TYPE="hidden" name="DataInterface_Close" value="true">
+</FORM>
+
+<FORM NAME="frmDataInterface_In" ACTION="">
+  <INPUT TYPE="hidden" name="DataInterface_Title" ID="t_Goods" value="商品列表">
+
+  <INPUT TYPE="hidden" name="DataInterface_Sql" ID="s_Goods" value="select v.Gid,v.Code,v.Name,v.UpperCode,v.UpperName,v.Spec,v.Unit,v.Stock from v_htx_goods v where v.EntGid = '<HDPrint Value=#EntGid#>' and substr(v.UpperCode,0,1) in ('1')">
+  <INPUT TYPE="hidden" name="DataInterface_CountSql" ID="c_Goods" value="select count(*)from v_htx_goods v where v.EntGid = '<HDPrint Value=#EntGid#>' and substr(v.UpperCode,0,1) in ('1')">
+  <INPUT TYPE="hidden" name="DataInterface_OrderSql" value="order by v.code">
+  <INPUT TYPE="hidden" name="DataInterface_UsrGid" value="<HDPrint Value=#UsrGid#>">
+  <INPUT TYPE="hidden" name="DataInterface_AppName" value="##HDNet_AppName##">
+
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="2^编号^left^30">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="3^名称^left^100">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="5^分类^left^30">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="6^规格^left^40">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="7^单位^left^30">
+
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="v.code^编号^1">
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="v.name^名称^1">
+  <input TYPE="hidden" name="DataInterface_Search_Sql" value="">
+  <input TYPE="hidden" name="DataInterface_Search_Cols" value="">
+
+  <INPUT TYPE="hidden" name="DataInterface_FieldTo" value="">
+  <INPUT TYPE="hidden" name="DataInterface_FieldBy" value="1^2^3^4^5^6^7">
+  <INPUT TYPE="hidden" name="DataInterface_CallBckFunc" value="Add_OrderIn">
+  <INPUT TYPE="hidden" name="DataInterface_Close" value="false">
+</FORM>
+
+<FORM NAME="frmDataInterface_Out" ACTION="">
+  <INPUT TYPE="hidden" name="DataInterface_Title" ID="t_Goods" value="商品列表">
+
+  <INPUT TYPE="hidden" name="DataInterface_Sql" ID="s_Goods" value="select v.Gid,v.Code,v.Name,v.UpperCode,v.UpperName,v.Spec,v.Unit,v.Stock from v_htx_goods v where v.EntGid = '<HDPrint Value=#EntGid#>' and substr(v.UpperCode,0,1) in ('1') and v.Stock > 0">
+  <INPUT TYPE="hidden" name="DataInterface_CountSql" ID="c_Goods" value="select count(*)from v_htx_goods v where v.EntGid = '<HDPrint Value=#EntGid#>' and substr(v.UpperCode,0,1) in ('1') and v.Stock > 0">
+  <INPUT TYPE="hidden" name="DataInterface_OrderSql" value="order by v.code">
+  <INPUT TYPE="hidden" name="DataInterface_UsrGid" value="<HDPrint Value=#UsrGid#>">
+  <INPUT TYPE="hidden" name="DataInterface_AppName" value="##HDNet_AppName##">
+
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="2^编号^left^30">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="3^名称^left^100">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="5^分类^left^30">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="6^规格^left^40">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="7^单位^left^30">
+
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="v.code^编号^1">
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="v.name^名称^1">
+  <input TYPE="hidden" name="DataInterface_Search_Sql" value="">
+  <input TYPE="hidden" name="DataInterface_Search_Cols" value="">
+
+  <INPUT TYPE="hidden" name="DataInterface_FieldTo" value="">
+  <INPUT TYPE="hidden" name="DataInterface_FieldBy" value="1^2^3^4^5^6^7^8">
+  <INPUT TYPE="hidden" name="DataInterface_CallBckFunc" value="Add_OrderOut">
+  <INPUT TYPE="hidden" name="DataInterface_Close" value="false">
+</FORM>
+
+
+<FORM NAME="frmDataInterface_Stock" ACTION="">
+  <INPUT TYPE="hidden" name="DataInterface_Title" ID="t_OrderIn" value="原料入库单列表">
+
+  <INPUT TYPE="hidden" name="DataInterface_Sql" ID="s_OrderIn" value="select v.gid OpGid,v.num OpNum,to_char(v.opdate,'YYYY.MM.DD') OpDate,v.opgdgid,v.opgdcode,v.opgdname,v.gdStock from v_htx_order v where v.EntGid = '<HDPrint Value=#EntGid#>' and v.OpStat = 20 and v.OpType = 10">
+  <INPUT TYPE="hidden" name="DataInterface_CountSql" ID="c_OrderIn" value="select count(*) from v_htx_order v where v.EntGid = '<HDPrint Value=#EntGid#>' and v.OpStat = 20 and v.OpType = 10">
+  <INPUT TYPE="hidden" name="DataInterface_OrderSql" value="order by v.OpDate,v.opGdCode">
+  <INPUT TYPE="hidden" name="DataInterface_UsrGid" value="<HDPrint Value=#UsrGid#>">
+  <INPUT TYPE="hidden" name="DataInterface_AppName" value="##HDNet_AppName##">
+
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="1^单号^left^40">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="2^批次^left^30">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="5^编号^left^30">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="6^名称^left^50">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="7^库存^left^30">
+
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="v.gid^单号号^1">
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="v.Num^批次^1">
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="v.GdCode^编号^1">
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="v.GdName^名称^1">
+  <input TYPE="hidden" name="DataInterface_Search_Sql" value="">
+  <input TYPE="hidden" name="DataInterface_Search_Cols" value="">
+
+  <INPUT TYPE="hidden" name="DataInterface_FieldTo" value="">
+  <INPUT TYPE="hidden" name="DataInterface_FieldBy" value="1^2^3^4^5^6^7">
+  <INPUT TYPE="hidden" name="DataInterface_CallBckFunc" value="Add_OrderStock">
+  <INPUT TYPE="hidden" name="DataInterface_Close" value="false">
+</FORM>
+
+<FORM NAME="frmDataInterface_Back" ACTION="">
+  <INPUT TYPE="hidden" name="DataInterface_Title" ID="t_OrderIn" value="原料入库单列表">
+
+  <INPUT TYPE="hidden" name="DataInterface_Sql" ID="s_OrderIn" value="select v.gid OpGid,v.num OpNum,to_char(v.opdate,'YYYY.MM.DD') OpDate,v.opgdgid,v.opgdcode,v.opgdname,v.gdStock from v_htx_order v where v.EntGid = '<HDPrint Value=#EntGid#>' and v.OpStat = 20 and v.OpType = 10 and v.gdStock > 0">
+  <INPUT TYPE="hidden" name="DataInterface_CountSql" ID="c_OrderIn" value="select count(*) from v_htx_order v where v.EntGid = '<HDPrint Value=#EntGid#>' and v.OpStat = 20 and v.OpType = 10 and v.gdStock > 0">
+  <INPUT TYPE="hidden" name="DataInterface_OrderSql" value="order by v.OpDate,v.opGdCode">
+  <INPUT TYPE="hidden" name="DataInterface_UsrGid" value="<HDPrint Value=#UsrGid#>">
+  <INPUT TYPE="hidden" name="DataInterface_AppName" value="##HDNet_AppName##">
+
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="1^单号^left^40">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="2^批次^left^30">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="5^编号^left^30">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="6^名称^left^50">
+  <INPUT TYPE="hidden" name="DataInterface_Cols" value="7^库存^left^30">
+
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="v.gid^单号号^1">
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="v.Num^批次^1">
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="v.GdCode^编号^1">
+  <INPUT TYPE="hidden" name="DataInterface_Search" value="v.GdName^名称^1">
+  <input TYPE="hidden" name="DataInterface_Search_Sql" value="">
+  <input TYPE="hidden" name="DataInterface_Search_Cols" value="">
+
+  <INPUT TYPE="hidden" name="DataInterface_FieldTo" value="">
+  <INPUT TYPE="hidden" name="DataInterface_FieldBy" value="1^2^3^4^5^6^7">
+  <INPUT TYPE="hidden" name="DataInterface_CallBckFunc" value="Add_OrderBack">
+  <INPUT TYPE="hidden" name="DataInterface_Close" value="false">
+</FORM>
+<HDLoop></HDLoop>

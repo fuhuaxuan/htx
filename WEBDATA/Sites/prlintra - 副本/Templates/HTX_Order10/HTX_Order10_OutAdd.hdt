@@ -1,0 +1,80 @@
+<!--Js引入-->
+<script src="##GetWebRootPath(/Scripts/jquery/jquery-1.x.js)##"></script>
+<script language="javascript" src="##GetWebRootPath(/Scripts/JQCommon.js)##"></script>
+<script language="javascript" src="##GetWebRootPath(/Scripts/JSCalendar.js)##"></script>
+<form name="frmDo" method="post" action="">
+<!--模块使用到一些隐藏的控件-->
+<INPUT TYPE="hidden" name="OpStat" value="<HDPrint Value=#OpStat# Replace=#DBField2Input#>">
+<INPUT TYPE="hidden" name="OpType" value="<HDPrint Value=#OpType# Replace=#DBField2Input#>">
+<h3 class="TitleBar"><HDPrint Value=#ModuleAtype#>-><HDPrint Value=#ModuleName#></h3>
+<div id="JQ_ToolBar">
+<TABLE width="100%" class="ButtonBar" cellpadding="0" cellspacing="0">
+  <col style="width:100%">
+  <TR>
+    <TD>
+      <B>工具栏：</B>
+      <A Href="javascript:CheckSubmit('保存');void(0);" name="btn_1"><FONT class="IconSave">　&nbsp;</FONT> 保存 </A>
+     |
+      <A HREF="javascript:location.reload();void(0)"><FONT class="IconRefresh">　&nbsp;</FONT> 刷新</A>
+      <a HREF="##HDNet_AppName##/__ExplainModule?URL=HTX_Order10_List&UsrGid=<HDPrint Value=#UsrGid#>"><FONT class="IconBack">　&nbsp;</FONT> 返回列表</A>
+    </TD>
+  </TR>
+</TABLE>
+</div>
+
+<table width="100%" class="ListBar" cellpadding="0"  cellspacing="1">
+  <colgroup>
+    <col style="padding-left:4px;width:10%">
+    <col style="padding-left:4px;width:23%">
+    <col style="padding-left:4px;width:10%">
+    <col style="padding-left:4px;width:23%">
+    <col style="padding-left:4px;width:10%">
+    <col style="padding-left:4px;width:23%">
+  </colgroup>
+  <tr>
+    <td class="DtlBarTitle">单号:</td>
+    <td class="listtd"><HDPrint Value=#Gid#><input type="hidden" NAME="Gid" maxlength="32" class="JQText JQMust" value="<HDPrint Value=#Gid# Replace=#DBField2Input#>"></td>
+    <td class="DtlBarTitle">批次:</td>
+    <td class="listtd"><HDPrint Value=#Num#><input type="hidden" NAME="Num" maxlength="32" class="JQText JQMust" value="<HDPrint Value=#Num# Replace=#DBField2Input#>"></td>
+    <td class="DtlBarTitle">出库日期:<font color ="red">*</font></td>
+    <td class="listtd"><input type="text" NAME="OpDate" maxlength="10" class="JQDate JQMust" value="<HDPrint Value=#OpDate# Replace=#DBField2Input#>"></td>
+  </tr>
+  <tr valign="top">
+    <td class="DtlBarTitle">备注:<br><font color="gray">(500字内)</font></td>
+    <td class="listtd" colspan="5"><textarea rows="3" id="Memo" name="Memo" class="JQText" maxlength="500" JQdefs="请输入备注,500字内"><HDPrint Value=#Memo# Replace=#DBField2InputField#></textarea></td>
+  </tr>
+</table><h3 class="SubTitleBar" >
+<TABLE cellspacing="1" cellpadding="0" width="100%">
+  <col style="padding-left:4px;">
+  <col style="width:20px;" align="center">
+  <TR>
+    <TD align="left" style="padding-left:10px;"><b>辅料信息</b><a href="javascript:DataInterface(frmDataInterface_Out)">[选择]</a></TD>
+    <TD onclick="JQExpand('tb_Gd_Out')"  style="cursor:hand" class="IconUp">　&nbsp;</TD>
+  </TR>
+</TABLE>
+</h3>
+<table width="100%" class="ListBar JQMust" cellpadding="0"  cellspacing="1" id="tb_Gd_Out">
+  <colgroup>
+     <col style="width:5%">
+     <col style="width:90%">
+     <col style="width:5%">
+  </colgroup>
+  <thead>
+  <tr class="DtlBarTitle">
+    <td align="center">行号</td>
+    <td align="center">辅料信息</td>
+    <td align="center">操作</td>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</form>
+
+<FieldSet style="Font-Family:Tahoma;Font-Size:9pt;">
+<Legend><font color="red">特别提醒</font></Legend>
+<li>相关说明文字；</li>
+</FieldSet>
+
+<!--本流程公用的Js函数等-->
+<HDPrint Value=#CommonList# Replace=#None#>

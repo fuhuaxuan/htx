@@ -1,0 +1,17 @@
+
+<hdloop>
+  <tr class="listtd" valign="top" onmouseover="this.className='listtdfocus';" onmouseout="this.className='listtd'">
+    <td align="center"><HDPrint Value=#Line#></td>
+    <td><a href="##HDNet_AppName##/__ExplainModule?Url=HTX_Goods_Dtl&UsrGid=<HDPrint Value=#UsrGid#>&Gid=<HDPrint Value=#GdGid#>" target="_blank"><HDPrint Value=#GdCode#></a></td>
+    <td><HDPrint Value=#GdName#></td>
+    <td><HDPrint Value=#GdSpec#></td>
+    <td><HDPrint Value=#GdUnit#></td>
+    <td><HDPrint Value=#ProPlace#></td>
+    <td><HDPrint Value=#OpQty#></td>
+    <td><HDPrint Value=#OpPrice#></td>
+    <td><HDPrint Value=#OpFee#></td>
+    <td><HDPrint Value=#OpRate#></td>
+    <td><HDPrint Value=#OpFeeA#></td>
+    <td><HDPrint Value=#OpFeeB#></td>
+  </tr>
+</hdloop>

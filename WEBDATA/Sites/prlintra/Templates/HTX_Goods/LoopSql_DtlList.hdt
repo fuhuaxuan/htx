@@ -1,0 +1,15 @@
+
+<hdloop>
+  <tr class="listtd">
+    <td align="center"><HDPrint Value=#Line#></td>
+    <td><HDPrint Value=#GdCode#></td>
+    <td><HDPrint Value=#GdName#></td>
+    <td><HDPrint Value=#UpperName#></td>
+    <td><HDPrint Value=#GdSpec#></td>
+    <td><HDPrint Value=#GdUnit#></td>
+    <td align="center"><HDPrint Value=#OpQty#></td>
+    <td align="right"><HDPrint Value=#OpFee#></td>
+    <td align="right"><HDPrint Value=#OpFeeA#></td>
+    <td align="right"><HDPrint Value=#OpFeeB#></td>
+  </tr>
+</hdloop>

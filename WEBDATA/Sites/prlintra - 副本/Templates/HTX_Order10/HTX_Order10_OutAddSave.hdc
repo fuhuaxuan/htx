@@ -1,0 +1,91 @@
+[Permission]
+;判断Gid 是否为空
+LIMIT1=Gid
+LIMITDesc1=StringSize[,0]
+LIMITRemind1=您进入的路径不正确，请从正确的路径进入。
+
+[Detail]
+;显示，单条数据的查询，可以用于HDT显示，有select命令。从SQL1～SQL20共支持20条
+;取出当前页面的信息
+SqlForCondition1=select Name ModuleName,Atype ModuleAtype from rt where lower(id) = lower(##Url##)
+
+[AddtionalSQL]
+;操作，没有返回的结果，是在数据库中执行，有Insert, Update, Delete命令。从SQL1～SQL20共支持20条
+;将数据插入主表中
+SQL1=insert into HTX_Order(EntGid,Gid,LastUpdDate,FillUsrGid,FillUsrCode,FillUsrName,Num,OpStat,OpType,OpDate,Memo) select __ENTGID__, ##Gid##, sysdate,__USRGID__,__USRCODE__,__USRNAME__,##Num##,##OpStat##,##OpType##,to_date(##OpDate##,'YYYY.MM.DD'),##Memo## from dual
+
+SQL2=delete from HTX_Order_Gd where EntGid = __ENTGID__ and Gid = ##Gid##
+
+SQL3=delete from HTX_Order_Rcd where EntGid = __ENTGID__ and Gid = ##Gid##
+
+LoopSQL1=insert into HTX_Order_Gd(EntGid,Gid,MGid,Line,GdGid,GdCode,GdName,UpperCode,UpperName,GdSpec,GdUnit,OpQty) select __ENTGID__, ##Gid##, sys_guid(),##%Line%##,g.Gid,g.Code,g.Name,g.UpperCode,g.UpperName,g.Spec,g.Unit,##%OpQty%## from v_htx_goods g where g.EntGid = __ENTGID__ and g.Gid = ##%GdGid%##
+
+LoopSQL2=insert into HTX_Order_Rcd(EntGid,Gid,MGid,GdGid,OpGdGid,OpGdCode,OpGdName,OpUpperCode,OpUpperName,OpGdSpec,OpGdUnit,OpGid,OpNum,OpDate,OpStat,OpType,OpQty) select __ENTGID__, ##Gid##, sys_guid(),g.Gid,g.Gid,g.Code,g.Name,g.UpperCode,g.UpperName,g.Spec,g.Unit,##Gid##,##Num##,to_date(##OpDate##,'YYYY.MM.DD'),##OpStat##,15,0-##%OpQty%## from v_htx_goods g where g.EntGid = __ENTGID__ and g.Gid = ##%GdGid%##
+
+LoopSQL3=insert into HTX_Order_Rcd(EntGid,Gid,MGid,GdGid,OpGdGid,OpGdCode,OpGdName,OpUpperCode,OpUpperName,OpGdSpec,OpGdUnit,OpGid,OpNum,OpDate,OpStat,OpType,OpQty) select __ENTGID__, ##Gid##, sys_guid(),##%OGdGid%##,g.Gid,g.Code,g.Name,g.UpperCode,g.UpperName,g.Spec,g.Unit,##%OpGid%##,##%OpNum%##,to_date(##OpDate##,'YYYY.MM.DD'),##OpStat##,11,0-##%OpGdQty%## from v_htx_goods g where g.EntGid = __ENTGID__ and g.Gid = ##%OpGdGid%##
+
+[AddtionalSQLUseWhere]
+;显示，单条数据的查询，可以用于HDT显示，有select命令。从SQL1～SQL20共支持20条，同时会使用上面的[where]中的sql语句
+;示例
+Sql1=
+
+[Master]
+;显示，多条记录的查询，可在HDT页面中直接使用<HDLoop>显示，并能够提供翻页。
+SQL=
+Count=
+
+[DefaultWhere]
+;多条记录的查询的默认条件
+DefaultWhere=
+
+[Where]
+;多条记录的查询的条件，可以根据页面传入的变量组合成
+1=
+
+[GroupBy]
+;多条记录的查询的分组
+GroupBy=
+
+[DefaultOrderBy]
+;多条记录的查询的默认排序
+DefaultOrderBy=
+
+[OrderBy]
+;多条记录的查询的排序,支持多重排序排序的先后顺序由序号决定
+1=
+
+
+[Title]
+;页面的标题，从Text1～Text30共支持30条
+
+Text1=^^ModuleAtype^^-^^ModuleName^^
+
+;是否翻页：1是，0否
+ChangePage=0
+
+;翻页时的每页记录数，如果没有的话，则取HDNet默认值20
+ChangePageRow=
+
+;写入数据库日志
+Log=^^ModuleName^^成功，^^Gid^^-^^Num^^
+
+;页面显示: 0:BodyPage;1:DetailPage;2:BlankPage
+PageKind=0
+
+;附件
+AttachCtrl=selFileList_1
+AttachPath=HTX_Order10
+
+[Link]
+;按钮权限，从URL1~URL10共支持10个，内容放的是RT表的权限，在页面返回的变量为chkRtID1~chkRtID10
+URL1=
+URL2=
+URL3=
+URL4=
+URL5=
+URL6=
+URL7=
+URL8=
+URL9=
+URL10=
+

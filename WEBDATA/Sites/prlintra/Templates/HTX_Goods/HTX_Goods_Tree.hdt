@@ -1,0 +1,63 @@
+<!-- JQuery函数引入 -->
+<script language="javascript" src="##GetWebRootPath(/Scripts/jquery/jquery-1.x.js)##"></script>
+<script language="javascript" src="##GetWebRootPath(/Scripts/JQTree.js)##"></script>
+<link rel="stylesheet" href="##GetWebRootPath(/css/JQTree.css)##" type="text/css">
+
+<form name="frmQuery" method="Post" action="">
+  <ul id="FrameTree" class="ztree" style="width:95%;height:95%"></ul>
+</form>
+<!-- 实现 -->
+<script language="JavaScript">
+  var $FrameList = $(window.parent.document.getElementsByName('FrameList')[0]);
+  //设置
+  var setting = {
+    view : {
+      dblClickExpand : false,
+      showLine : true,
+      selectedMulti : false,
+      showIcon: false
+    },
+    data : {
+      simpleData : {
+        enable : true,
+        idKey : "id",
+        pIdKey : "pId",
+        rootPId : ""
+      }
+    },
+    callback : {
+      beforeClick : function(treeId, treeNode) {
+        var zTree = $.fn.zTree.getZTreeObj("FrameTree");
+        $FrameList.attr("src", treeNode.file);
+      }
+    }
+  };
+
+  //查询
+  function JQTreeSearch(JsGid) {
+    var zTree = $.fn.zTree.getZTreeObj("FrameTree");
+    var treeNode = zTree.getNodeByParam("id", JsGid)
+    zTree.selectNode(treeNode);
+    $FrameList.attr("src", treeNode.file);
+  }
+
+  //数据收集
+  var zNodes = [];
+  var IsOpen = true;
+  <HDLoop>
+  var otps = {
+    id : '<HDPrint Value=#Code# Replace=#DBField2Js#>',
+    pId : '<HDPrint Value=#UpperCode# Replace=#DBField2Js#>',
+    name : "<HDPrint Value=#Code# Replace=#DBField2Js#>.<HDPrint Value=#Name# Replace=#DBField2Js#>",
+    open : IsOpen,
+    file : "##HDNet_AppName##/__ExplainModule?Url=HTX_Goods_List&UsrGid=<HDPrint Value=#UsrGid#>&UpperCode=<HDPrint Value=#Code# Replace=#DBField2Js#>"
+  };
+  zNodes.push(otps);
+  IsOpen = false;
+  </HDLoop>
+
+  //加载
+  $(document).ready(function() {
+    $.fn.zTree.init($("#FrameTree"), setting, zNodes);
+  });
+</script>

@@ -1,0 +1,68 @@
+<!--Js引入-->
+<script src="##GetWebRootPath(/Scripts/jquery/jquery-1.x.js)##"></script>
+<script language="javascript" src="##GetWebRootPath(/Scripts/JQCommon.js)##"></script>
+
+<form name="frmDo" method="post" action="">
+<h3 class="TitleBar"><HDPrint Value=#ModuleAtype#>-><HDPrint Value=#ModuleName#></h3>
+<div id="JQ_ToolBar">
+<TABLE width="100%" class="ButtonBar" cellpadding=0 cellspacing=0>
+  <col style="width:100%">
+  <TR>
+    <TD>
+      <B>工具栏：</B>
+      <HDIF Equal(<HDPrint Value=#chkRtID1#>, 1)>
+        <A HREF="##HDNet_AppName##/__ExplainModule?Url=HTX_Vendor_Mod&UsrGid=<HDPrint Value=#UsrGid#>&Gid=<HDPrint Value=#Gid#>"><FONT class="IconMod">　&nbsp;</FONT> 修改</A>
+      </HDIF>
+      <HDIF Equal(<HDPrint Value=#chkRtID2#>, 1)>
+      <a href="##HDNet_AppName##/__ExplainModule?Url=HTX_Vendor_Del&UsrGid=<HDPrint Value=#UsrGid#>&Gid=<HDPrint Value=#Gid#>" onclick="javascript:if (!(confirm('你确定要删除该信息吗？\n删除操作是不能还原的！'))) return false;"><FONT class="IconDel">　&nbsp;</FONT> 删除</A>
+      </HDIF>
+     |
+      <A HREF="javascript:location.reload();void(0)"><FONT class="IconRefresh">　&nbsp;</FONT> 刷新</A>
+
+      <a HREF="##HDNet_AppName##/__ExplainModule?URL=HTX_Vendor_List&UsrGid=<HDPrint Value=#UsrGid#>"><FONT class="IconBack">　&nbsp;</FONT> 返回列表</A>
+    </TD>
+  </TR>
+</TABLE>
+</div>
+<table  width="100%" class="ListBar" cellspacing="1">
+  <colgroup>
+    <col style="padding-left:4px;width:10%">
+    <col style="padding-left:4px;width:23%">
+    <col style="padding-left:4px;width:10%">
+    <col style="padding-left:4px;width:23%">
+    <col style="padding-left:4px;width:10%">
+    <col style="padding-left:4px;width:23%">
+  </colgroup>
+  <tr>
+    <td class="DtlBarTitle">编号:</td>
+    <td class="listtd"><HDPrint Value=#Code#></td>
+    <td class="DtlBarTitle">名称:</td>
+    <td class="listtd"><HDPrint Value=#Name#></td>
+    <td class="DtlBarTitle">地址:</td>
+    <td class="listtd"><HDPrint Value=#Address#></td>
+  </tr>
+  <tr>
+    <td class="DtlBarTitle">联系人:</td>
+    <td class="listtd"><HDPrint Value=#Contactor#></td>
+    <td class="DtlBarTitle">联系方式:</td>
+    <td class="listtd"><HDPrint Value=#ContactWay#></td>
+    <td class="DtlBarTitle">区域:</td>
+    <td class="listtd"><HDPrint Value=#Area#></td>
+  </tr>
+  <tr valign="top">
+    <td class="DtlBarTitle">所属业务员:</td>
+    <td class="listtd"><HDPrint Value=#FillUsrName#></td>
+    <td class="DtlBarTitle">备注:</td>
+    <td class="listtd" colspan="3"><HDPrint Value=#Memo#></td>
+  </tr>
+</table>
+</form>
+<script language="javascript">
+  //函数：ready
+  //功能：document 加载完成后调用
+  $(function(){
+    //复制一个工具栏
+    var $ToolBar = $("div#JQ_ToolBar");
+    //$("form[name=frmDo]").append($ToolBar.html());
+  });
+</script>
